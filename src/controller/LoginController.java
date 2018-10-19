@@ -1,9 +1,17 @@
 package controller;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 
 public class LoginController {
 
@@ -15,5 +23,19 @@ public class LoginController {
 
     @FXML
     private Button btnEntrar;
+ 
+    @FXML
+    public Boolean login () throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("../view/Menu_screen.fxml"));
 
+    	Scene scene = new Scene(root);
+		
+		Stage stage = new Stage();
+
+		stage.setTitle("Menu");
+		stage.setScene(scene);
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.show();
+    	return false;
+    }
 }

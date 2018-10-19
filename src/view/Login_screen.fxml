@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2b2d42;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2b2d42;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
       <AnchorPane layoutX="36.0" layoutY="39.0" opacity="0.5" prefHeight="328.0" prefWidth="314.0" style="-fx-background-color: #8d99ae;">
          <children>
@@ -29,7 +28,7 @@
                   <Image url="@../../../../../Área%20de%20Trabalho/IFSP/LP3/logo/user.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnEntrar" layoutX="116.0" layoutY="244.0" mnemonicParsing="false" text="Entrar">
+            <Button fx:id="btnEntrar" layoutX="116.0" layoutY="244.0" mnemonicParsing="false" onAction="#login" text="Entrar">
                <font>
                   <Font name="Century Gothic" size="18.0" />
                </font>
