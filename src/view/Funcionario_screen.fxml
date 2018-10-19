@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FuncionarioController">
+   <children>
+      <GridPane layoutY="-14.0" prefHeight="400.0" prefWidth="750.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="95.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="264.0" minHeight="10.0" prefHeight="197.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="100.0" prefWidth="750.0" style="-fx-background-color: #8d99ae;">
+               <children>
+                  <Label layoutX="219.0" layoutY="15.0" text="Funcionário">
+                     <font>
+                        <Font name="Century Gothic Bold" size="55.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblVoltar" layoutX="14.0" layoutY="12.0" prefHeight="11.0" prefWidth="0.0" text="&lt;">
+                     <font>
+                        <Font name="Century Gothic" size="60.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="656.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Área%20de%20Trabalho/IFSP/LP3/logo/logofim.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="123.0" text="Nome" />
+                  <TableColumn prefWidth="122.0" text="Registro" />
+                  <TableColumn prefWidth="77.0" text="Funçao" />
+                  <TableColumn prefWidth="102.0" text="CPF" />
+                  <TableColumn prefWidth="124.0" text="Ano de Início" />
+                  <TableColumn prefWidth="101.0" text="Telefone" />
+              </columns>
+               <GridPane.margin>
+                  <Insets left="50.0" right="50.0" />
+               </GridPane.margin>
+            </TableView>
+            <Label text="Filtrar" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfFiltrar" prefHeight="25.0" prefWidth="587.0" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="100.0" right="50.0" />
+               </GridPane.margin>
+            </TextField>
+            <GridPane GridPane.rowIndex="3">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="btnRemover" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2b2d42;" text="Remover" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnAlterar" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2b2d42;" text="Alterar" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnAdicionar" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2b2d42;" text="Adicionar" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnRelatorio" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2b2d42;" text="Relatório" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" top="20.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

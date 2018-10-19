@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroFuncController">
+   <children>
+      <GridPane prefHeight="400.0" prefWidth="750.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="0.0" prefWidth="750.0" style="-fx-background-color: #8d99ae;">
+               <children>
+                  <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="648.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Área%20de%20Trabalho/IFSP/LP3/logo/logofim.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="14.0" layoutY="21.0" text="Cadastro de Funcionário">
+                     <font>
+                        <Font name="Century Gothic Bold" size="45.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <GridPane GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.0" minWidth="10.0" prefWidth="104.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="725.0" minWidth="10.0" prefWidth="646.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="lblNome" text="Nome">
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <TextField fx:id="tfNome" prefHeight="25.0" prefWidth="598.0" promptText="Nome completo" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+            </GridPane>
+            <GridPane GridPane.rowIndex="4">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="0.0" prefWidth="101.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="226.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="86.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.0" minWidth="10.0" prefWidth="336.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="lblInicio" text="Início">
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblFuncao" text="Função" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfInicio" promptText="Ano" GridPane.columnIndex="1" />
+                  <TextField fx:id="tfFuncao" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+            </GridPane>
+            <GridPane GridPane.rowIndex="3">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="102.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.0" minWidth="10.0" prefWidth="244.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.0" minWidth="10.0" prefWidth="67.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.0" minWidth="10.0" prefWidth="336.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="lblCpf" text="CPF">
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Label fx:id="lblRegistro" text="Registro" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfCpf" promptText="000.000.000-00" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="tfRegistro" prefHeight="25.0" prefWidth="291.0" promptText="Somente números" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+            </GridPane>
+            <GridPane GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2b2d42;" text="Cancelar" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnAtualizar" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2b2d42;" text="Atualizar" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <GridPane GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.0" minWidth="10.0" prefWidth="103.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="621.0" minWidth="10.0" prefWidth="597.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="lblEmail" text="E-mail">
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <TextField fx:id="tfEmail" promptText="user@domain.com.br" GridPane.columnIndex="1" />
+               </children>
+               <GridPane.margin>
+                  <Insets right="50.0" />
+               </GridPane.margin>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

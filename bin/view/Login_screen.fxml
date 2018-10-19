@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2b2d42;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <AnchorPane layoutX="36.0" layoutY="39.0" opacity="0.5" prefHeight="328.0" prefWidth="314.0" style="-fx-background-color: #8d99ae;">
+         <children>
+            <Label layoutX="54.0" layoutY="145.0" lineSpacing="5.0" prefHeight="35.0" prefWidth="132.0" text="Bem-vindo,">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="172.0" prefHeight="35.0" prefWidth="209.0" text="digite seu registro:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfRegistro" layoutX="54.0" layoutY="208.0" prefHeight="25.0" prefWidth="209.0" promptText="Somente números" />
+            <ImageView fitHeight="122.0" fitWidth="120.0" layoutX="98.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Área%20de%20Trabalho/IFSP/LP3/logo/user.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnEntrar" layoutX="116.0" layoutY="244.0" mnemonicParsing="false" text="Entrar">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
+               </font>
+            </Button>
+            <Label fx:id="lblCadastro" layoutX="140.0" layoutY="295.0" text="Cadastrar funcionário" underline="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="teste" layoutX="381.0" layoutY="44.0" prefHeight="312.0" prefWidth="288.0">
+         <children>
+            <ImageView fitHeight="312.0" fitWidth="288.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Área%20de%20Trabalho/IFSP/LP3/logo/logofim.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

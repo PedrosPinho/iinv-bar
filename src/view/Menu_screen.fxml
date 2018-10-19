@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+   <top>
+      <AnchorPane prefHeight="100.0" prefWidth="740.0" style="-fx-background-color: #2b2d42;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnPerfil" layoutX="667.0" layoutY="14.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="53.0" style="-fx-background-radius: 30;" text="Perfil" textOverrun="WORD_ELLIPSIS" />
+            <Label layoutX="296.0" layoutY="16.0" text="Menu" textFill="#edf2f4">
+               <font>
+                  <Font name="Century Gothic Bold" size="55.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblData" layoutX="36.0" layoutY="19.0" text="Data" textFill="#edf2f4">
+               <font>
+                  <Font name="Century Gothic" size="45.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblSair" layoutX="681.0" layoutY="79.0" text="Sair" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <GridPane style="-fx-background-color: #edf2f4;" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="372.0" minWidth="10.0" prefWidth="369.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="374.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="164.0" minHeight="10.0" prefHeight="158.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnCliente" alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Cliente" textAlignment="CENTER">
+               <font>
+                  <Font name="Century Gothic" size="30.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCardapio" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Cardápio" textAlignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnMesa" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Mesas" textAlignment="CENTER" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Century Gothic" size="30.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnFidelidade" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Fidelidade" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
