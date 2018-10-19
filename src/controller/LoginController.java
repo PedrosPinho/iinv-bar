@@ -25,7 +25,7 @@ public class LoginController {
     private Button btnEntrar;
  
     @FXML
-    public Boolean login () throws IOException {
+    public void login () throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("../view/Menu_screen.fxml"));
 
     	Scene scene = new Scene(root);
@@ -36,6 +36,20 @@ public class LoginController {
 		stage.setScene(scene);
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.show();
-    	return false;
     }
+    
+    @FXML
+    public void cadastro () throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("../view/Funcionario_cadastro_screen.fxml"));
+
+    	Scene scene = new Scene(root);
+		
+		Stage stage = new Stage();
+
+		stage.setTitle("Cadastro");
+		stage.setScene(scene);
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.show();
+    }
+
 }

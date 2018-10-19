@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <top>
       <AnchorPane prefHeight="100.0" prefWidth="740.0" style="-fx-background-color: #2b2d42;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnPerfil" layoutX="667.0" layoutY="14.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="53.0" style="-fx-background-radius: 30;" text="Perfil" textOverrun="WORD_ELLIPSIS" />
+            <Button fx:id="btnPerfil" layoutX="668.0" layoutY="14.0" mnemonicParsing="false" onAction="#profile" prefHeight="53.0" prefWidth="53.0" style="-fx-background-radius: 30;" text="Perfil" textOverrun="WORD_ELLIPSIS" />
             <Label layoutX="296.0" layoutY="16.0" text="Menu" textFill="#edf2f4">
                <font>
                   <Font name="Century Gothic Bold" size="55.0" />
@@ -42,22 +43,22 @@
           <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnCliente" alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Cliente" textAlignment="CENTER">
+            <Button fx:id="btnCliente" alignment="CENTER" mnemonicParsing="false" onAction="#client" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Cliente" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="30.0" />
                </font>
             </Button>
-            <Button fx:id="btnCardapio" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Cardápio" textAlignment="CENTER" GridPane.rowIndex="1">
+            <Button fx:id="btnCardapio" mnemonicParsing="false" onAction="#cardapio" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Cardápio" textAlignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Century Gothic" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="btnMesa" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Mesas" textAlignment="CENTER" GridPane.columnIndex="1">
+            <Button fx:id="btnMesa" mnemonicParsing="false" onAction="#mesa" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Mesas" textAlignment="CENTER" GridPane.columnIndex="1">
                <font>
                   <Font name="Century Gothic" size="30.0" />
                </font>
             </Button>
-            <Button fx:id="btnFidelidade" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Fidelidade" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="btnFidelidade" mnemonicParsing="false" onAction="#fidelidade" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #b3d89c;" text="Fidelidade" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Century Gothic" size="24.0" />
                </font>
