@@ -27,7 +27,7 @@
                <children>
                   <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="648.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Área%20de%20Trabalho/IFSP/LP3/logo/logofim.png" />
+                        <Image url="@../assets/logofim.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="14.0" layoutY="21.0" text="Cadastro de Funcionário">

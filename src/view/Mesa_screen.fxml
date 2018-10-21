@@ -34,7 +34,7 @@
                   </Label>
                   <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="656.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Área%20de%20Trabalho/IFSP/LP3/logo/logofim.png" />
+                        <Image url="@../assets/logofim.png" />
                      </image>
                   </ImageView>
                </children>
