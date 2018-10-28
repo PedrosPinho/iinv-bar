@@ -44,7 +44,8 @@ public class MenuController {
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);
-		stage.initModality(Modality.WINDOW_MODAL);
+		stage.setResizable(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
     }
     
@@ -58,7 +59,8 @@ public class MenuController {
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);
-		stage.initModality(Modality.WINDOW_MODAL);
+		stage.setResizable(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
     }
     
@@ -72,7 +74,8 @@ public class MenuController {
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);
-		stage.initModality(Modality.WINDOW_MODAL);
+		stage.setResizable(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
     }
     
@@ -91,7 +94,8 @@ public class MenuController {
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);
-		stage.initModality(Modality.WINDOW_MODAL);
+		stage.setResizable(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
     }
     
@@ -105,7 +109,8 @@ public class MenuController {
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);
-		stage.initModality(Modality.WINDOW_MODAL);
+		stage.setResizable(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
     }
 

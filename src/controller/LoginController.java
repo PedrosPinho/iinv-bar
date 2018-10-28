@@ -62,7 +62,8 @@ public class LoginController {
 	
 			stage.setTitle("Menu");
 			stage.setScene(scene);
-			stage.initModality(Modality.WINDOW_MODAL);
+			stage.setResizable(false);
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.show();
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
@@ -84,7 +85,8 @@ public class LoginController {
 
 		stage.setTitle("Cadastro");
 		stage.setScene(scene);
-		stage.initModality(Modality.WINDOW_MODAL);
+		stage.setResizable(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
     }
 

@@ -69,7 +69,7 @@ public class CadastroFuncController {
         jsonObject.put("inicio", this.tfInicio.getText());
         jsonObject.put("type", "funcionario");
         
-    	String uri = "http://localhost:5000/iinv-bar/us-central1/users/create";
+    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/create";
     	URL url = new URL(uri);
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("POST");

@@ -48,8 +48,10 @@ public class ClienteController {
 		Stage stage = new Stage();
 
 		stage.setTitle("Menu");
-		stage.setScene(scene);
-		stage.initModality(Modality.WINDOW_MODAL);
+		stage.setScene(scene);			
+		stage.setResizable(false);
+
+		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
     }
 

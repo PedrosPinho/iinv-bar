@@ -13,6 +13,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 //			BorderPane root = new BorderPane();
 			Parent root = FXMLLoader.load(getClass().getResource("../view/Login_screen.fxml"));
+			primaryStage.setResizable(false);
 			primaryStage.setTitle("Login");
 			primaryStage.setScene(new Scene(root,700,400));
 			primaryStage.show();
