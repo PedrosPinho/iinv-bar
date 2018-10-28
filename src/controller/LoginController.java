@@ -1,17 +1,28 @@
 package controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+ 
+import org.json.simple.JSONObject;
 
 public class LoginController {
 
@@ -26,16 +37,41 @@ public class LoginController {
  
     @FXML
     public void login () throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../view/Menu_screen.fxml"));
+    	JSONObject jsonObject = new JSONObject();
+        
+        jsonObject.put("cpf", this.tfRegistro.getText());
+        
+    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/login";
+    	URL url = new URL(uri);
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("POST");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	connection.setRequestProperty("Content-Type", "application/json");
+    	
+    	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+    	wr.write(jsonObject.toString());
+    	wr.flush();
+    		
+    	if (connection.getResponseCode() == 200) {
+			Parent root = FXMLLoader.load(getClass().getResource("../view/Menu_screen.fxml"));
+	
+	    	Scene scene = new Scene(root);
+			
+			Stage stage = new Stage();
+	
+			stage.setTitle("Menu");
+			stage.setScene(scene);
+			stage.initModality(Modality.WINDOW_MODAL);
+			stage.show();
+    	} else {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Erro no login");
+    		alert.setHeaderText("Tem problema ai, meu");
+    		alert.setContentText("mt problema mermao");
 
-    	Scene scene = new Scene(root);
-		
-		Stage stage = new Stage();
-
-		stage.setTitle("Menu");
-		stage.setScene(scene);
-		stage.initModality(Modality.WINDOW_MODAL);
-		stage.show();
+    		alert.showAndWait();
+    	}
     }
     
     @FXML
