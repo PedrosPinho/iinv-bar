@@ -67,7 +67,7 @@ public class LoginController {
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Erro no login");
-    		alert.setHeaderText("Tem problema ai, meu");
+    		alert.setHeaderText("Saco de coco, talquei?");
     		alert.setContentText("mt problema mermao");
 
     		alert.showAndWait();
