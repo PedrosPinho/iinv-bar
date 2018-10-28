@@ -3,5 +3,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/iinv/iinv-bar/src/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/iinv/iinv-bar/src/gson-2.8.5.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

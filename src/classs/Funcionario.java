@@ -11,7 +11,7 @@ package classs;
  */
 public class Funcionario {
        public String nome;
-    private String cpf, telefone,funcao,registro;
+    private String cpf, telefone,funcao, type;
  
     
     public String getNome() {
@@ -38,11 +38,11 @@ public class Funcionario {
     public void setFuncao (String funcao) {
     this.funcao = funcao;
       }
-    public String getRegistro() {
-    return this.registro;
+    public String getType() {
+    return this.type;
     }
    
-    public void setRegistro (String registro) {
-    this.funcao = funcao;
+    public void setType (String type) {
+    this.type = type;
       }
       }

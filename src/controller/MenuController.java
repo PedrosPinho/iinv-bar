@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import classs.Funcionario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 
 public class MenuController {
 
+	
     @FXML
     private Button btnFidelidade;
 

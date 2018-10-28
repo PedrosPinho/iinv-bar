@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -18,11 +19,20 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
  
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ContainerFactory;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import classs.Funcionario;
 
 public class LoginController {
 
@@ -36,7 +46,7 @@ public class LoginController {
     private Button btnEntrar;
  
     @FXML
-    public void login () throws IOException {
+    public void login () throws IOException, ParseException, InterruptedException {
     	JSONObject jsonObject = new JSONObject();
         
         jsonObject.put("cpf", this.tfRegistro.getText());
@@ -52,8 +62,31 @@ public class LoginController {
     	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
     	wr.write(jsonObject.toString());
     	wr.flush();
-    		
+
+//    	URL url2 = new URL(
+//				"http://localhost:5000/iinv-bar/us-central1/users/" + this.tfRegistro.getText());
+//			HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
+//	    	connection2.setRequestMethod("GET");
+//	    	connection2.setDoOutput(true);
+//	    	connection2.setDoInput(true);
+//	    	
+//	    	BufferedReader in = new BufferedReader(
+//			        new InputStreamReader(connection2.getInputStream()));
+//			String resp;
+//			StringBuffer response = new StringBuffer();
+//
+//			while ((resp = in.readLine()) != null) {
+//				response.append(resp);
+//			}
+//			
+//
+//			Gson gson = new Gson();  
+//			Funcionario func = gson.fromJson(response.toString(), Funcionario.class);
+//			
+//			in.close();
+
     	if (connection.getResponseCode() == 200) {
+    			
 			Parent root = FXMLLoader.load(getClass().getResource("../view/Menu_screen.fxml"));
 	
 	    	Scene scene = new Scene(root);
@@ -61,10 +94,12 @@ public class LoginController {
 			Stage stage = new Stage();
 	
 			stage.setTitle("Menu");
+			stage.setUserData(this.tfRegistro.getText());
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.show();
+			
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Erro no login");
