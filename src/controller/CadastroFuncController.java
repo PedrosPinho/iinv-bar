@@ -93,7 +93,6 @@ public class CadastroFuncController {
 			alert.setTitle("Cadastro nao tops");
 			alert.setHeaderText("nao tops");
 			alert.setContentText("Saco de coco, talquei?");
-	
 			alert.showAndWait();
     	}
     }

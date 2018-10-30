@@ -63,28 +63,6 @@ public class LoginController {
     	wr.write(jsonObject.toString());
     	wr.flush();
 
-//    	URL url2 = new URL(
-//				"http://localhost:5000/iinv-bar/us-central1/users/" + this.tfRegistro.getText());
-//			HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
-//	    	connection2.setRequestMethod("GET");
-//	    	connection2.setDoOutput(true);
-//	    	connection2.setDoInput(true);
-//	    	
-//	    	BufferedReader in = new BufferedReader(
-//			        new InputStreamReader(connection2.getInputStream()));
-//			String resp;
-//			StringBuffer response = new StringBuffer();
-//
-//			while ((resp = in.readLine()) != null) {
-//				response.append(resp);
-//			}
-//			
-//
-//			Gson gson = new Gson();  
-//			Funcionario func = gson.fromJson(response.toString(), Funcionario.class);
-//			
-//			in.close();
-
     	if (connection.getResponseCode() == 200) {
     			
 			Parent root = FXMLLoader.load(getClass().getResource("../view/Menu_screen.fxml"));

@@ -1,9 +1,18 @@
 package controller;
 
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.json.simple.JSONObject;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class CadastroCliController {
 
@@ -36,6 +45,43 @@ public class CadastroCliController {
 
     @FXML
     private TextField tfNome;
+    
+    @FXML
+    public void create () throws IOException {
+    	JSONObject jsonObject = new JSONObject();
+        
+        jsonObject.put("nome", this.tfNome.getText());
+        jsonObject.put("cpf", this.tfCpf.getText());
+        jsonObject.put("email", this.tfEmail.getText());
+        jsonObject.put("type", "cliente");
+        
+    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/create";
+    	URL url = new URL(uri);
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("POST");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	connection.setRequestProperty("Content-Type", "application/json");
+    	
+    	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+    	wr.write(jsonObject.toString());
+    	wr.flush();
+    	
+    	if(connection.getResponseCode() == 200) {
+	    	Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Cadastro tops");
+			alert.setHeaderText("tops");
+			alert.setContentText("tops");
+			alert.showAndWait();
+			
+    	} else {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Cadastro nao tops");
+			alert.setHeaderText("nao tops");
+			alert.setContentText("Saco de coco, talquei?");
+			alert.showAndWait();
+    	}
+    }
 
 }
 
