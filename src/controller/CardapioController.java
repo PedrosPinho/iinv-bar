@@ -1,23 +1,57 @@
 package controller;
 
+import java.awt.List;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
+import com.google.gson.Gson;
+
+import classs.Cardapio;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class CardapioController {
 
+	public CardapioController () throws IOException, ParseException {
+		ArrayList<Object> al = new ArrayList();
+		URL url = new URL("http://localhost:5000/iinv-bar/us-central1/cardapio/");
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("GET");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	
+    	BufferedReader in = new BufferedReader(
+		        new InputStreamReader(connection.getInputStream()));
+    	org.json.simple.parser.JSONParser parse = new org.json.simple.parser.JSONParser();
+    	JSONArray obj = (JSONArray) parse.parse(in.readLine());
+    	
+    	
+    	for(Object a : obj) {
+    		al.add(a);
+    	}
+    	Gson gson = new Gson();
+    	ArrayList<Cardapio> cardapio = new ArrayList<Cardapio>();
+    	al.forEach(a -> {
+    		Cardapio c = gson.fromJson(a.toString(), Cardapio.class);
+    		cardapio.add(c); 
+    	});		
+		in.close();
+	}
+	
     @FXML
     private Button btnAdicionar;
 
@@ -35,7 +69,7 @@ public class CardapioController {
 
     @FXML
     private TableView<?> tbCardapio;
-
+    
     @FXML
     private Label lblPreco;
 
@@ -59,7 +93,7 @@ public class CardapioController {
     
     @FXML
     public void addItem () throws IOException {
-JSONObject jsonObject = new JSONObject();
+    	JSONObject jsonObject = new JSONObject();
         
         jsonObject.put("nome", this.tfNome.getText());
         jsonObject.put("descricao", this.tfDesc.getText());

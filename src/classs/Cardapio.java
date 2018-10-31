@@ -8,21 +8,21 @@ package classs;
 
 public class Cardapio {
 
-     public double preco;
-    private int id;
+    private String preco;
+    private String nome;
     private String descricao;
 
-public double getPreco() {
+public String getPreco() {
     return this.preco;
   }
-    public void setPreco (double preco) {
+    public void setPreco (String preco) {
     this.preco = preco;
     }
-    public int getId() {
-    return this.id;
+    public String getNome() {
+    return this.nome;
     }
-    public void setId (int id) {
-    this.id = id;
+    public void setNome (String id) {
+    this.nome = (String) id;
     }
     public String getDescricao() {
     return this.descricao;
