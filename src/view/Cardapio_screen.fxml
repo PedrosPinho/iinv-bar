@@ -163,10 +163,10 @@
                         </Label>
                         <TableView fx:id="tbCardapio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                           <columns>
-                            <TableColumn prefWidth="45.0" text="ID" />
-                            <TableColumn prefWidth="121.0" text="Nome" />
-                              <TableColumn prefWidth="59.0" text="Preço" />
-                              <TableColumn prefWidth="129.0" text="Descrição" />
+                            <TableColumn fx:id="id" prefWidth="45.0" text="ID" />
+                            <TableColumn fx:id="nome" prefWidth="121.0" text="Nome" />
+                              <TableColumn fx:id="preco" prefWidth="59.0" text="Preço" />
+                              <TableColumn fx:id="descricao" prefWidth="129.0" text="Descrição" />
                           </columns>
                            <GridPane.margin>
                               <Insets bottom="10.0" left="20.0" />

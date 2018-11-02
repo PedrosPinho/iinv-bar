@@ -16,13 +16,17 @@ import org.json.simple.parser.ParseException;
 import com.google.gson.Gson;
 
 import classs.Cardapio;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CardapioController {
 
@@ -44,12 +48,15 @@ public class CardapioController {
     		al.add(a);
     	}
     	Gson gson = new Gson();
-    	ArrayList<Cardapio> cardapio = new ArrayList<Cardapio>();
+    	ObservableList<Cardapio> data =
+    	        FXCollections.observableArrayList();
     	al.forEach(a -> {
     		Cardapio c = gson.fromJson(a.toString(), Cardapio.class);
-    		cardapio.add(c); 
-    	});		
-		in.close();
+    		data.add(c);
+    	});
+    	this.tbCardapio.getColumns().
+    	this.tbCardapio.setItems(data);
+    	in.close();
 	}
 	
     @FXML
@@ -68,7 +75,7 @@ public class CardapioController {
     private Label lvlVoltar;
 
     @FXML
-    private TableView<?> tbCardapio;
+    private TableView<Cardapio> tbCardapio;
     
     @FXML
     private Label lblPreco;
