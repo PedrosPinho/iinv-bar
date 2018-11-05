@@ -34,7 +34,7 @@ public class CardapioController {
 	@SuppressWarnings("unchecked")
 	public void initialize () throws IOException, ParseException {
 		ArrayList<Object> al = new ArrayList();
-		URL url = new URL("http://localhost:5000/iinv-bar/us-central1/cardapio/");
+		URL url = new URL("https://us-central1-iinv-bar.cloudfunctions.net/cardapio/");
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("GET");
     	connection.setDoOutput(true);
@@ -56,7 +56,6 @@ public class CardapioController {
     		Cardapio c = gson.fromJson(a.toString(), Cardapio.class);
     		data.add(c);
     	});
-    	System.out.print(data);
     	this.tcNome.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Nome"));
     	this.tcDescricao.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Descricao"));
     	this.tcPreco.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Preco"));
@@ -126,7 +125,7 @@ public class CardapioController {
         jsonObject.put("descricao", this.tfDesc.getText());
         jsonObject.put("preco", this.tfPreco.getText());
         
-    	String uri = "http://localhost:5000/iinv-bar/us-central1/cardapio/create";
+    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/cardapio/create";
     	URL url = new URL(uri);
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("POST");
@@ -142,7 +141,12 @@ public class CardapioController {
     		alert.setTitle("Deu bom");
     		alert.setHeaderText("Deu bom, talquei?");
     		alert.setContentText("sem problema mermao");
-
+    		try {
+				this.initialize();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		alert.showAndWait();
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);

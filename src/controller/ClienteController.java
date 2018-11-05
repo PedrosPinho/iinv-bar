@@ -1,19 +1,73 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+
+import com.google.gson.Gson;
+
+import classs.Cliente;
+import classs.Funcionario;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ClienteController {
+	@SuppressWarnings("unchecked")
+	public void initialize() throws IOException, ParseException {
+		ArrayList<Object> al = new ArrayList();
+		URL url = new URL("http://localhost:5000/iinv-bar/us-central1/users/");
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("GET");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	
+    	BufferedReader in = new BufferedReader(
+		        new InputStreamReader(connection.getInputStream()));
+    	org.json.simple.parser.JSONParser parse = new org.json.simple.parser.JSONParser();
+    	JSONArray obj = (JSONArray) parse.parse(in.readLine());
+    	
+    	
+    	for(Object a : obj) {
+    		al.add(a);
+    	}
+    	Gson gson = new Gson();
+    	ObservableList<Cliente> data =
+    	        FXCollections.observableArrayList();
+    	al.forEach(a -> {
+    		Cliente c = gson.fromJson(a.toString(), Cliente.class);
+    		data.add(c);
+    	});
+    	this.tcNome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Nome"));
+    	this.tcCpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("CPF"));
+    	this.tcTel.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Telefone"));
+    	this.tcEmail.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Email"));
+    	this.tcFreq.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Frequencia"));
+
+    	
+    	
+    	this.tbCliente.getItems().setAll(data);
+
+
+    	in.close();
+	}
 
     @FXML
     private Button btnAdicionar;
@@ -25,7 +79,21 @@ public class ClienteController {
     private TextField tfFiltrar;
 
     @FXML
-    private TableView<?> tbCliente;
+    private TableView<Cliente> tbCliente;
+    @FXML
+    private TableColumn<Cliente,String> tcNome;
+    
+    @FXML
+    private TableColumn<Cliente,String> tcEmail;
+    
+    @FXML
+    private TableColumn<Cliente,String> tcTel;
+    
+    @FXML
+    private TableColumn<Cliente,String> tcCpf;
+    
+    @FXML
+    private TableColumn<Cliente,String> tcFreq;
 
     @FXML
     private Button btnAlterar;

@@ -1,7 +1,7 @@
 package classs;
 
 public class Cliente {
-    public String nome;
+    private String nome;
     private String Cpf, telefone;
     private int frequencia;
     

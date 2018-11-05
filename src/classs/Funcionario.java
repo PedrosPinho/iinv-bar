@@ -10,8 +10,8 @@ package classs;
  *  
  */
 public class Funcionario {
-       public String nome;
-    private String cpf, telefone,funcao, type;
+       private String nome;
+    private String cpf, telefone,funcao, type, email;
  
     
     public String getNome() {
@@ -45,4 +45,10 @@ public class Funcionario {
     public void setType (String type) {
     this.type = type;
       }
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
       }
