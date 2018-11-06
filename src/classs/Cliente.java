@@ -2,7 +2,7 @@ package classs;
 
 public class Cliente {
     private String nome;
-    private String Cpf, telefone;
+    private String cpf, telefone, email;
     private int frequencia;
     
      public String getNome() {
@@ -12,10 +12,10 @@ public class Cliente {
     this.nome = nome;
     }
     public String getCpf() {
-    return this.Cpf;
+    return this.cpf;
     }
     public void setCpf (String Cpf) {
-    this.Cpf = Cpf;
+    this.cpf = Cpf;
     }
     public String getTelefone() {
     return this.telefone;
@@ -29,5 +29,11 @@ public class Cliente {
    public void setFrequencia (int Frequencia) {
     this.frequencia = Frequencia;
       }
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
 }
     
