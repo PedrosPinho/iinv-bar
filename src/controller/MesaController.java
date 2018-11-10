@@ -12,6 +12,7 @@ import org.json.simple.JSONArray;
 
 import com.google.gson.Gson;
 
+import classs.Cliente;
 import classs.Mesa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +27,7 @@ public class MesaController {
 	@SuppressWarnings("unchecked")
 	public MesaController() throws IOException, ParseException, org.json.simple.parser.ParseException {
 		ArrayList<Object> al = new ArrayList();
-		URL url = new URL("http://localhost:5000/iinv-bar/us-central1/mesa/");
+		URL url = new URL("https://us-central1-iinv-bar.cloudfunctions.net/mesa/");
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("GET");
     	connection.setDoOutput(true);
@@ -48,10 +49,9 @@ public class MesaController {
     		Mesa c = gson.fromJson(a.toString(), Mesa.class);
     		data.add(c);
     	});
-    	System.out.println(data.get(0).getNum_Mesa());
     	
-    	this.tcMesa.setCellValueFactory(new PropertyValueFactory<Mesa, String>("mesa"));
-    	this.tcPess.setCellValueFactory(new PropertyValueFactory<Mesa, String>("pessoas"));
+    	this.tcMesa.setCellValueFactory(new PropertyValueFactory<Mesa, String>("num_mesa"));
+    	this.tcPess.setCellValueFactory(new PropertyValueFactory<Mesa, String>("num_pessoas"));
 
     	this.tbMesas.getItems().setAll(data);
 
