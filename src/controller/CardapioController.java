@@ -18,6 +18,8 @@ import com.google.gson.Gson;
 import classs.Cardapio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -64,7 +66,31 @@ public class CardapioController {
 
     	
 //    	this.tbCardapio = (TableView<Cardapio>) data;
-
+    	
+    	FilteredList<Cardapio> filteredData = new FilteredList<>(data, c -> true);
+    	
+    	tfFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(c -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                
+                String lowerCaseFilter = newValue.toLowerCase();
+                
+                if (c.getNome().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches name
+                } else {
+                	return false; // Does not match.
+                }
+            });
+        });
+    	
+    	SortedList<Cardapio> sortedData = new SortedList<>(filteredData);
+    	
+    	sortedData.comparatorProperty().bind(tbCardapio.comparatorProperty());
+    	
+    	tbCardapio.setItems(sortedData);
 
     	in.close();
 	}

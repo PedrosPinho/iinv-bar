@@ -8,13 +8,20 @@ import java.net.URL;
 import org.json.simple.JSONObject;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class CadastroFuncController {
+    @FXML
+    private Button btnListar;
 
     @FXML
     private Label lblCpf;
@@ -24,12 +31,6 @@ public class CadastroFuncController {
 
     @FXML
     private TextField tfInicio;
-
-    @FXML
-    private Label lblRegistro;
-
-    @FXML
-    private TextField tfRegistro;
 
     @FXML
     private Label lblEmail;
@@ -57,6 +58,21 @@ public class CadastroFuncController {
 
     @FXML
     private TextField tfFuncao;
+    
+    @FXML
+    public void list () throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("../view/Funcionario_lista_screen.fxml"));
+
+    	Scene scene = new Scene(root);
+		
+		Stage stage = new Stage();
+
+		stage.setTitle("Menu");
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.show();
+    }
 
     @FXML
     public void create () throws IOException {

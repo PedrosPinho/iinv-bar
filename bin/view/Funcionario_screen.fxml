@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FuncionarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FuncionarioController">
    <children>
       <GridPane layoutY="-14.0" prefHeight="400.0" prefWidth="750.0">
         <columnConstraints>
@@ -40,14 +46,14 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <TableView fx:id="tbFunc" prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
               <columns>
-                <TableColumn prefWidth="123.0" text="Nome" />
-                  <TableColumn prefWidth="122.0" text="Registro" />
-                  <TableColumn prefWidth="77.0" text="Funçao" />
-                  <TableColumn prefWidth="102.0" text="CPF" />
-                  <TableColumn prefWidth="124.0" text="Ano de Início" />
-                  <TableColumn prefWidth="101.0" text="Telefone" />
+                <TableColumn fx:id="tcNome" prefWidth="123.0" text="Nome" />
+                  <TableColumn fx:id="tcFunc" prefWidth="77.0" text="Funçao" />
+                  <TableColumn fx:id="tcCpf" prefWidth="102.0" text="CPF" />
+                  <TableColumn fx:id="tcIni" prefWidth="124.0" text="Ano de Início" />
+                  <TableColumn fx:id="tcTel" prefWidth="101.0" text="Telefone" />
+                  <TableColumn fx:id="tcEmail" prefWidth="122.0" text="Email" />
               </columns>
                <GridPane.margin>
                   <Insets left="50.0" right="50.0" />

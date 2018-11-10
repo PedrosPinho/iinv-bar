@@ -11,9 +11,14 @@ package classs;
  */
 public class Funcionario {
        private String nome;
-    private String cpf, telefone,funcao, type, email;
+    private String cpf, telefone,funcao, type, email, inicio;
  
-    
+    public String getInicio() {
+        return this.inicio;
+    }
+    public void setInicio (String inicio) {
+    	this.inicio = inicio;
+    }  
     public String getNome() {
     return this.nome;
   }

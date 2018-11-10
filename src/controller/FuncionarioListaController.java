@@ -2,9 +2,7 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,31 +13,25 @@ import org.json.simple.parser.ParseException;
 
 import com.google.gson.Gson;
 
-import classs.Cardapio;
-import classs.Cliente;
 import classs.Funcionario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-public class ClienteController {
+public class FuncionarioListaController {
+	
 	@SuppressWarnings("unchecked")
 	public void initialize() throws IOException, ParseException {
 		ArrayList<Object> al = new ArrayList();
-		URL url = new URL("https://us-central1-iinv-bar.cloudfunctions.net/users/client");
+		URL url = new URL("https://us-central1-iinv-bar.cloudfunctions.net/users/funcionario");
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("POST");
     	connection.setDoInput(true);
@@ -58,23 +50,23 @@ public class ClienteController {
     		al.add(a);
     	}
     	Gson gson = new Gson();
-    	ObservableList<Cliente> data =
+    	ObservableList<Funcionario> data =
     	        FXCollections.observableArrayList();
     	al.forEach(a -> {
-    		Cliente c = gson.fromJson(a.toString(), Cliente.class);
+    		Funcionario c = gson.fromJson(a.toString(), Funcionario.class);
     		data.add(c);
     	});
-    	this.tcNome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Nome"));
-    	this.tcCpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpf"));
-    	this.tcTel.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Telefone"));
-    	this.tcEmail.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Email"));
-    	this.tcFreq.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Frequencia"));
+    	this.tcNome.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("nome"));
+    	this.tcEmail.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("email"));
+    	this.tcCpf.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("cpf"));
+    	this.tcInicio.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("inicio"));
+    	this.tcFuncao.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("funcao"));
 
     	
     	
-    	this.tbCliente.getItems().setAll(data);
+    	this.tbFuncionario.getItems().setAll(data);
 
-    	FilteredList<Cliente> filteredData = new FilteredList<>(data, c -> true);
+    	FilteredList<Funcionario> filteredData = new FilteredList<>(data, c -> true);
     	
     	tfFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(c -> {
@@ -93,17 +85,17 @@ public class ClienteController {
             });
         });
     	
-    	SortedList<Cliente> sortedData = new SortedList<>(filteredData);
+    	SortedList<Funcionario> sortedData = new SortedList<>(filteredData);
     	
-    	sortedData.comparatorProperty().bind(tbCliente.comparatorProperty());
+    	sortedData.comparatorProperty().bind(tbFuncionario.comparatorProperty());
     	
-    	tbCliente.setItems(sortedData);
+    	tbFuncionario.setItems(sortedData);
     	
     	in.close();
 	}
 
     @FXML
-    private Button btnAdicionar;
+    private TableColumn<Funcionario, String> tcNome;
 
     @FXML
     private Label lblFiltrar;
@@ -112,48 +104,27 @@ public class ClienteController {
     private TextField tfFiltrar;
 
     @FXML
-    private TableView<Cliente> tbCliente;
+    private TableColumn<Funcionario, String> tcInicio;
+
     @FXML
-    private TableColumn<Cliente,String> tcNome;
-    
-    @FXML
-    private TableColumn<Cliente,String> tcEmail;
-    
-    @FXML
-    private TableColumn<Cliente,String> tcTel;
-    
-    @FXML
-    private TableColumn<Cliente,String> tcCpf;
-    
-    @FXML
-    private TableColumn<Cliente,String> tcFreq;
+    private TableView<Funcionario> tbFuncionario;
 
     @FXML
     private Button btnAlterar;
 
     @FXML
-    private Button btnRelatorio;
+    private TableColumn<Funcionario, String> tcFuncao;
 
     @FXML
-    private Label lblVoltar;
+    private Button btnCancelar;
+
+    @FXML
+    private TableColumn<Funcionario, String> tcCpf;
+
+    @FXML
+    private TableColumn<Funcionario, String> tcEmail;
 
     @FXML
     private Button btnRemover;
-    
-    @FXML
-    public void cadastro () throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../view/Cliente_cadastro_screen.fxml"));
-
-    	Scene scene = new Scene(root);
-		
-		Stage stage = new Stage();
-
-		stage.setTitle("Menu");
-		stage.setScene(scene);			
-		stage.setResizable(false);
-
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.show();
-    }
 
 }
