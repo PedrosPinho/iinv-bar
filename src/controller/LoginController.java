@@ -33,8 +33,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import classs.Funcionario;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
 
 public class LoginController {
 
@@ -49,16 +47,7 @@ public class LoginController {
  
     @FXML
     public void login () throws IOException, ParseException, InterruptedException {
-		Observable<Boolean> boo = new Observable<Boolean>() {
-
-			@Override
-			protected void subscribeActual(Observer<? super Boolean> arg0) {
-				// TODO Auto-generated method stub
-			}		
-		};
-		boo.flatMap(this.a()).andThen(() -> {
-			    this.request();
-		});
+		this.request();
     }
     public Boolean a (){this.btnEntrar.setText("Aguarde..."); return true;}
     	
