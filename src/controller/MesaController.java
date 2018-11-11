@@ -52,10 +52,10 @@ public class MesaController {
     		data.add(c);
     	});
     	
-    	this.tcMesa.setCellValueFactory(new PropertyValueFactory<Mesa, String>("num_mesa"));
-    	this.tcPess.setCellValueFactory(new PropertyValueFactory<Mesa, String>("num_pessoas"));
-
-    	this.tbMesas.getItems().setAll(data);
+//    	this.tcMesa.setCellValueFactory(new PropertyValueFactory<Mesa, String>("num_mesa"));
+//    	this.tcPess.setCellValueFactory(new PropertyValueFactory<Mesa, String>("num_pessoas"));
+//
+//    	this.tbMesas.getItems().setAll(data);
 
     	in.close();
 		
