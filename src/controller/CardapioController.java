@@ -30,6 +30,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class CardapioController {
 
@@ -108,7 +110,7 @@ public class CardapioController {
     private Label lblDesc;
 
     @FXML
-    private Label lvlVoltar;
+    private ImageView btnVoltar;
 
     @FXML
     private TableView<Cardapio> tbCardapio;
@@ -142,6 +144,12 @@ public class CardapioController {
 
     @FXML
     private TextField tfNome;
+    
+    @FXML
+    public void voltar() throws IOException {
+    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
+        stage.close();
+    }
     
     @FXML
     public void addItem () throws IOException {

@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FuncionarioListaController">
    <children>
       <GridPane prefHeight="400.0" prefWidth="750.0">
@@ -66,7 +65,7 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnCancelar" layoutX="43.0" layoutY="195.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2b2d42;" text="Cancelar" textFill="WHITE">
+                  <Button fx:id="btnCancelar" layoutX="43.0" layoutY="195.0" mnemonicParsing="false" onAction="#voltar" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2b2d42;" text="Cancelar" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>

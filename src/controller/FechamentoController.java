@@ -1,9 +1,13 @@
 package controller;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class FechamentoController {
 
@@ -23,7 +27,7 @@ public class FechamentoController {
     private TextField tfFinal;
 
     @FXML
-    private Label lblVoltar;
+    private ImageView btnVoltar;
 
     @FXML
     private Label lblMesa;
@@ -48,5 +52,11 @@ public class FechamentoController {
 
     @FXML
     private Button btnNCadastrado;
+    
+    @FXML
+    public void voltar() throws IOException {
+    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
+        stage.close();
+    }
 
 }

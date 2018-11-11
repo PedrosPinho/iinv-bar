@@ -34,7 +34,7 @@
                         <Image url="@../assets/logofim.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="btnVoltar" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnVoltar" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="26.0" onMousePressed="#voltar" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/back.png" />
                      </image>
@@ -116,12 +116,12 @@
                         </AnchorPane>
                      </children>
                   </GridPane>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tbFidelidade" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="133.0" text="Nome" />
-                      <TableColumn prefWidth="124.0" text="CPF" />
-                        <TableColumn prefWidth="90.0" text="Telefone" />
-                        <TableColumn prefWidth="73.0" text="Frequência" />
+                      <TableColumn fx:id="tcNome" prefWidth="133.0" text="Nome" />
+                      <TableColumn fx:id="tcCpf" prefWidth="124.0" text="CPF" />
+                        <TableColumn fx:id="tcTel" prefWidth="90.0" text="Telefone" />
+                        <TableColumn fx:id="tcFreq" prefWidth="73.0" text="Frequência" />
                     </columns>
                      <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

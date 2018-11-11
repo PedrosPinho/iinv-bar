@@ -32,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -135,10 +136,16 @@ public class ClienteController {
     private Button btnRelatorio;
 
     @FXML
-    private Label lblVoltar;
-
+    private ImageView btnVoltar;
+    
     @FXML
     private Button btnRemover;
+    
+    @FXML
+    public void voltar() throws IOException {
+    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
+        stage.close();
+    }
     
     @FXML
     public void cadastro () throws IOException {

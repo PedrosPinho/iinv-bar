@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 public class CadastroCliController {
 
@@ -45,6 +46,12 @@ public class CadastroCliController {
 
     @FXML
     private TextField tfNome;
+    
+    @FXML
+    public void voltar() throws IOException {
+    	Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
+    }
     
     @FXML
     public void create () throws IOException {

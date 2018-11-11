@@ -14,11 +14,6 @@
          <top>
             <AnchorPane maxHeight="100.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #8d99ae;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="lblVoltar" layoutX="14.0" layoutY="11.0" text="&lt;">
-                     <font>
-                        <Font name="Century Gothic" size="60.0" />
-                     </font>
-                  </Label>
                   <Label fx:id="lblFechamento" layoutX="206.0" layoutY="15.0" text="Fechamento">
                      <font>
                         <Font name="Century Gothic Bold" size="55.0" />
@@ -27,6 +22,11 @@
                   <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="656.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/logofim.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnVoltar" fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="28.0" onMousePressed="#voltar" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/back.png" />
                      </image>
                   </ImageView>
                </children>

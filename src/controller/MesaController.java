@@ -20,6 +20,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class MesaController {
 
@@ -71,6 +73,12 @@ public class MesaController {
     private TableColumn<Mesa,String> tcPess;
 
     @FXML
-    private Label lblVoltar;
+    private ImageView btnVoltar;
+    
+    @FXML
+    public void voltar() throws IOException {
+    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
+        stage.close();
+    }
 
 }

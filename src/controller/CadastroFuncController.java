@@ -60,6 +60,12 @@ public class CadastroFuncController {
     private TextField tfFuncao;
     
     @FXML
+    public void voltar() throws IOException {
+    	Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
+    }
+    
+    @FXML
     public void list () throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("../view/Funcionario_lista_screen.fxml"));
 
