@@ -122,7 +122,7 @@
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <TextField fx:id="tfCpf" promptText="000.000.000-00" GridPane.columnIndex="1">
+                  <TextField fx:id="tfCpf" onKeyReleased="#cpfMask" promptText="000.000.000-00" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets right="20.0" />
                      </GridPane.margin>

@@ -5,6 +5,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import br.com.jmgt.util.TextFieldFormatter;
+
 import org.json.simple.JSONObject;
 
 import javafx.fxml.FXML;
@@ -58,6 +60,15 @@ public class CadastroFuncController {
 
     @FXML
     private TextField tfFuncao;
+    
+    @FXML
+    public void cpfMask() throws IOException {
+    	TextFieldFormatter tff = new TextFieldFormatter();
+    	tff.setMask("###.###.###-##");
+    	tff.setCaracteresValidos("0123456789");
+    	tff.setTf(tfCpf);
+    	tff.formatter();
+    }
     
     @FXML
     public void voltar() throws IOException {
