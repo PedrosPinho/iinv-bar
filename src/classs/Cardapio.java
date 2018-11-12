@@ -8,14 +8,16 @@ package classs;
 
 public class Cardapio {
 
-    private String preco;
+    private String id;
+    private double preco;
     private String nome;
     private String descricao;
+    private int quantidade;
 
-public String getPreco() {
+public double getPreco() {
     return this.preco;
   }
-    public void setPreco (String preco) {
+    public void setPreco (double preco) {
     this.preco = preco;
     }
     public String getNome() {
@@ -30,4 +32,16 @@ public String getPreco() {
     public void setDescricao (String Descricao) {
     this.descricao = descricao;
      }
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 }

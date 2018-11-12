@@ -53,6 +53,10 @@ public class FechamentoController {
     @FXML
     private Button btnNCadastrado;
     
+    public void fill(String val) {
+    	this.tfTotal.setText(val); 
+    }
+    
     @FXML
     public void voltar() throws IOException {
     	Stage stage = (Stage) btnVoltar.getScene().getWindow();
