@@ -2,14 +2,44 @@ package controller;
 
 import java.io.IOException;
 
+import org.json.simple.parser.ParseException;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 
 public class FechamentoController {
+	
+
+	@SuppressWarnings("unchecked")
+	public void initialize() {
+		tfDividir.textProperty().addListener(atualizarValorFinal());
+		tfTotal.textProperty().addListener(atualizarValorFinal());
+	}
+
+	private ChangeListener<? super String> atualizarValorFinal() {
+		return (observable, oldValue, newValue) -> {
+			try {
+				double dividir = Double.valueOf(tfDividir.getText().replace(',', '.'));
+				double total = Double.valueOf(tfTotal.getText().replace(',', '.'));			
+
+				double valorFinal = total/dividir;
+				tfFinal.setText(Double.toString(valorFinal).replace('.', ','));				
+			} catch (NumberFormatException e) {
+				// Ainda não tem um dos campos
+				tfFinal.setText("");				
+			}
+        };
+	}
+
 
     @FXML
     private Label lblFechamento;
@@ -63,4 +93,5 @@ public class FechamentoController {
         stage.close();
     }
 
+    
 }
