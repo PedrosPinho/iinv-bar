@@ -35,7 +35,7 @@ public class ContaController {
 	@SuppressWarnings("unchecked")
 	public void initialize() throws IOException, ParseException, org.json.simple.parser.ParseException {
 		ArrayList<Object> al = new ArrayList();
-		URL url = new URL("http://localhost:5000/iinv-bar/us-central1/mesa/itens/" + Integer.toString(numero));
+		URL url = new URL("https://us-central1-iinv-bar.cloudfunctions.net/mesa/itens/" + Integer.toString(numero));
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("GET");
     	connection.setDoOutput(true);
