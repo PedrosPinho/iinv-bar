@@ -85,7 +85,7 @@ public class CadastroCliController {
     		Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Cadastro nao tops");
 			alert.setHeaderText("nao tops");
-			alert.setContentText("Saco de coco, talquei?");
+			alert.setContentText("Erro");
 			alert.showAndWait();
     	}
     }

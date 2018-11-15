@@ -87,8 +87,8 @@ public class LoginController {
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Erro no login");
-    		alert.setHeaderText("Saco de coco, talquei?");
-    		alert.setContentText("mt problema mermao");
+    		alert.setHeaderText("Erro tente novamente");
+    		alert.setContentText("mt problema");
 
     		alert.showAndWait();
     	}

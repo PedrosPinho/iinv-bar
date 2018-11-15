@@ -64,7 +64,7 @@ public class CadastroFuncController {
     @FXML
     public void cpfMask() throws IOException {
     	TextFieldFormatter tff = new TextFieldFormatter();
-    	tff.setMask("###.###.###-##");
+    	tff.setMask("###########");
     	tff.setCaracteresValidos("0123456789");
     	tff.setTf(tfCpf);
     	tff.formatter();
@@ -125,7 +125,7 @@ public class CadastroFuncController {
     		Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Cadastro nao tops");
 			alert.setHeaderText("nao tops");
-			alert.setContentText("Saco de coco, talquei?");
+			alert.setContentText("Erro");
 			alert.showAndWait();
     	}
     }

@@ -174,7 +174,7 @@ public class CardapioController {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Deu bom");
     		alert.setHeaderText("Deu bom, talquei?");
-    		alert.setContentText("sem problema mermao");
+    		alert.setContentText("OK");
     		try {
 				this.initialize();
 			} catch (ParseException e) {
