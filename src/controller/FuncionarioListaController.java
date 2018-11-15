@@ -5,29 +5,38 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import com.google.gson.Gson;
 
+import classs.Cliente;
 import classs.Funcionario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FuncionarioListaController {
+	ObservableList<Funcionario> data;
 	
 	@SuppressWarnings("unchecked")
 	public void initialize() throws IOException, ParseException {
@@ -51,7 +60,7 @@ public class FuncionarioListaController {
     		al.add(a);
     	}
     	Gson gson = new Gson();
-    	ObservableList<Funcionario> data =
+    	this.data =
     	        FXCollections.observableArrayList();
     	al.forEach(a -> {
     		Funcionario c = gson.fromJson(a.toString(), Funcionario.class);
@@ -132,6 +141,109 @@ public class FuncionarioListaController {
     public void voltar() throws IOException {
     	Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
+    }
+    @FXML
+    public void remover() throws IOException, ParseException {
+
+    	int index = tbFuncionario.getSelectionModel().getSelectedIndex();
+        Funcionario funcionario = tbFuncionario.getItems().get(index); 
+        JSONObject jsonObject = new JSONObject();
+
+jsonObject.put("id", funcionario.getCpf());
+    	
+    	String uri = "http://us-central1-iinv-bar.cloudfunctions.net/users/remove";
+    	URL url = new URL(uri);
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("DELETE");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	connection.setRequestProperty("Content-Type", "application/json");
+    	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+    	wr.write(jsonObject.toString());
+    	wr.flush();
+    	
+    	System.out.println(connection.getResponseMessage());
+    	
+    	this.data.remove(funcionario);
+    	}
+    
+    	private void abrirTelaCadastro(Funcionario funcionario) throws IOException {
+    		//Parent root = FXMLLoader.load(getClass().getResource("../view/Cliente_cadastro_screen.fxml"));
+    		FXMLLoader loader = new FXMLLoader(
+    			    getClass().getResource(
+    			      "../view/Funcionario_cadastro_screen.fxml"
+    			    )
+    			  );
+
+
+        		  
+        	Scene scene = new Scene(loader.load());
+    		
+    		Stage stage = new Stage();
+
+    		stage.setTitle("Menu");
+    		stage.setScene(scene);			
+    		stage.setResizable(false);
+    		
+    		CadastroFuncController controller = 
+        		    loader.getController();
+        		  controller.carregaFuncionario(funcionario);
+
+    		stage.initModality(Modality.APPLICATION_MODAL);
+    		stage.show(); }
+    	
+    	@FXML
+    public void alterar() throws IOException {
+    	int index = tbFuncionario.getSelectionModel().getSelectedIndex();
+    	Funcionario funcionario = tbFuncionario.getItems().get(index); 
+    	   	
+    	    	
+    	abrirTelaCadastro(funcionario);
+    
+    }
+    
+    
+    public String getJSON(String url, int timeout) {
+        HttpURLConnection c = null;
+        try {
+            URL u = new URL(url);
+            c = (HttpURLConnection) u.openConnection();
+            c.setRequestMethod("GET");
+            c.setRequestProperty("Content-length", "0");
+            c.setUseCaches(false);
+            c.setAllowUserInteraction(false);
+            c.setConnectTimeout(timeout);
+            c.setReadTimeout(timeout);
+            c.connect();
+            int status = c.getResponseCode();
+
+            switch (status) {
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line+"\n");
+                    }
+                    br.close();
+                    return sb.toString();
+            }
+
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } finally {
+           if (c != null) {
+              try {
+                  c.disconnect();
+              } catch (Exception ex) {
+                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+              }
+           }
+        }
+        return null;
     }
 
 }

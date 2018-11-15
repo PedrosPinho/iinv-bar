@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import br.com.jmgt.util.TextFieldFormatter;
+import classs.Funcionario;
 
 import org.json.simple.JSONObject;
 
@@ -60,6 +61,8 @@ public class CadastroFuncController {
 
     @FXML
     private TextField tfFuncao;
+
+	private String modo;
     
     @FXML
     public void cpfMask() throws IOException {
@@ -102,7 +105,7 @@ public class CadastroFuncController {
         jsonObject.put("inicio", this.tfInicio.getText());
         jsonObject.put("type", "funcionario");
         
-    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/create";
+    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/"+modo;
     	URL url = new URL(uri);
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("POST");
@@ -129,4 +132,22 @@ public class CadastroFuncController {
 			alert.showAndWait();
     	}
     }
+
+	public void carregaFuncionario(Funcionario funcionario) {
+		if(funcionario.getCpf()== null) {
+			this.modo = "create";
+			tfCpf.setDisable(false);
+		}else{
+			this.modo = "alter";
+		tfCpf.setText(funcionario.getCpf());
+		tfFuncao.setText(funcionario.getFuncao());
+		tfEmail.setText(funcionario.getEmail());
+		tfNome.setText(funcionario.getNome());
+		tfInicio.setText(funcionario.getInicio());
+
+		
+		tfCpf.setDisable(true);
+		}
+		
+	}
 }
