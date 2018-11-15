@@ -7,10 +7,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import com.google.gson.Gson;
@@ -37,8 +42,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ClienteController {
+	ObservableList<Cliente> data;
 	@SuppressWarnings("unchecked")
 	public void initialize() throws IOException, ParseException {
+		listar();
+	}
+
+	private void listar() throws MalformedURLException, IOException, ProtocolException, ParseException {
 		ArrayList<Object> al = new ArrayList();
 		URL url = new URL("https://us-central1-iinv-bar.cloudfunctions.net/users/client");
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -59,7 +69,7 @@ public class ClienteController {
     		al.add(a);
     	}
     	Gson gson = new Gson();
-    	ObservableList<Cliente> data =
+    	this.data =
     	        FXCollections.observableArrayList();
     	al.forEach(a -> {
     		Cliente c = gson.fromJson(a.toString(), Cliente.class);
@@ -72,7 +82,7 @@ public class ClienteController {
     	this.tcFreq.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Frequencia"));
 
     	
-    	
+    	this.tbCliente.getItems().clear();
     	this.tbCliente.getItems().setAll(data);
 
     	FilteredList<Cliente> filteredData = new FilteredList<>(data, c -> true);
@@ -149,18 +159,113 @@ public class ClienteController {
     
     @FXML
     public void cadastro () throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../view/Cliente_cadastro_screen.fxml"));
+		abrirTelaCadastro(new Cliente());
+   
+    }
 
-    	Scene scene = new Scene(root);
+	private void abrirTelaCadastro(Cliente cliente) throws IOException {
+		//Parent root = FXMLLoader.load(getClass().getResource("../view/Cliente_cadastro_screen.fxml"));
+		FXMLLoader loader = new FXMLLoader(
+			    getClass().getResource(
+			      "../view/Cliente_cadastro_screen.fxml"
+			    )
+			  );
+
+
+    		  
+    	Scene scene = new Scene(loader.load());
 		
 		Stage stage = new Stage();
 
 		stage.setTitle("Menu");
 		stage.setScene(scene);			
 		stage.setResizable(false);
+		
+		CadastroCliController controller = 
+    		    loader.getController();
+    		  controller.carregaCliente(cliente);
 
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
+	}
+    @FXML
+    public void delete() throws IOException, ParseException {
+
+    	int index = tbCliente.getSelectionModel().getSelectedIndex();
+        Cliente cliente = tbCliente.getItems().get(index); 
+        JSONObject jsonObject = new JSONObject();
+
+jsonObject.put("id", cliente.getCpf());
+    	
+    	String uri = "http://us-central1-iinv-bar.cloudfunctions.net/users/remove";
+    	URL url = new URL(uri);
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("DELETE");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	connection.setRequestProperty("Content-Type", "application/json");
+    	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+    	wr.write(jsonObject.toString());
+    	wr.flush();
+    	
+    	System.out.println(connection.getResponseMessage());
+    	
+    	this.data.remove(cliente);
+    	//listar();
+    }
+    public void alterar() throws IOException {
+    	int index = tbCliente.getSelectionModel().getSelectedIndex();
+        Cliente cliente = tbCliente.getItems().get(index); 
+    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/"+ cliente.getCpf();
+    	String data = getJSON(uri, 4000000);
+    	Cliente clie = new Gson().fromJson(data, Cliente.class);
+    	System.out.println(clie.getNome());
+    	
+    	abrirTelaCadastro(cliente);
+    
+    }
+    
+    public String getJSON(String url, int timeout) {
+        HttpURLConnection c = null;
+        try {
+            URL u = new URL(url);
+            c = (HttpURLConnection) u.openConnection();
+            c.setRequestMethod("GET");
+            c.setRequestProperty("Content-length", "0");
+            c.setUseCaches(false);
+            c.setAllowUserInteraction(false);
+            c.setConnectTimeout(timeout);
+            c.setReadTimeout(timeout);
+            c.connect();
+            int status = c.getResponseCode();
+
+            switch (status) {
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line+"\n");
+                    }
+                    br.close();
+                    return sb.toString();
+            }
+
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } finally {
+           if (c != null) {
+              try {
+                  c.disconnect();
+              } catch (Exception ex) {
+                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+              }
+           }
+        }
+        return null;
     }
 
 }

@@ -64,7 +64,7 @@ public class CadastroFuncController {
     @FXML
     public void cpfMask() throws IOException {
     	TextFieldFormatter tff = new TextFieldFormatter();
-    	tff.setMask("###.###.###-##");
+    	tff.setMask("###########");
     	tff.setCaracteresValidos("0123456789");
     	tff.setTf(tfCpf);
     	tff.formatter();
