@@ -149,7 +149,7 @@ public class FuncionarioListaController {
         Funcionario funcionario = tbFuncionario.getItems().get(index); 
         JSONObject jsonObject = new JSONObject();
 
-jsonObject.put("id", funcionario.getCpf());
+        jsonObject.put("id", funcionario.getCpf());
     	
     	String uri = "http://us-central1-iinv-bar.cloudfunctions.net/users/remove";
     	URL url = new URL(uri);
