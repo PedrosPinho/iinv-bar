@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import static controller.Main.sceneChange;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -85,48 +86,51 @@ public class MenuController {
     }
 
     @FXML
-    public void client () throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../view/Cliente_screen.fxml"));
-
-    	Scene scene = new Scene(root);
-		
-		Stage stage = new Stage();
-
-		stage.setTitle("Menu");
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.show();
+    public void client () throws Exception {
+    	sceneChange("sceneCliente");
+//		Parent root = FXMLLoader.load(getClass().getResource("../view/Cliente_screen.fxml"));
+//
+//    	Scene scene = new Scene(root);
+//		
+//		Stage stage = new Stage();
+//
+//		stage.setTitle("Menu");
+//		stage.setScene(scene);
+//		stage.setResizable(false);
+//		stage.initModality(Modality.APPLICATION_MODAL);
+//		stage.show();
     }
     
     @FXML
-    public void mesa () throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../view/Mesa_screen.fxml"));
-
-    	Scene scene = new Scene(root);
-		
-		Stage stage = new Stage();
-
-		stage.setTitle("Menu");
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.show();
+    public void mesa () throws Exception {
+    	sceneChange("sceneMesa");
+//		Parent root = FXMLLoader.load(getClass().getResource("../view/Mesa_screen.fxml"));
+//
+//    	Scene scene = new Scene(root);
+//		
+//		Stage stage = new Stage();
+//
+//		stage.setTitle("Menu");
+//		stage.setScene(scene);
+//		stage.setResizable(false);
+//		stage.initModality(Modality.APPLICATION_MODAL);
+//		stage.show();
     }
     
     @FXML
-    public void cardapio () throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../view/Cardapio_screen.fxml"));
-
-    	Scene scene = new Scene(root);
-		
-		Stage stage = new Stage();
-
-		stage.setTitle("Menu");
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.show();
+    public void cardapio () throws Exception {
+    	sceneChange("sceneCardapio");
+//		Parent root = FXMLLoader.load(getClass().getResource("../view/Cardapio_screen.fxml"));
+//
+//    	Scene scene = new Scene(root);
+//		
+//		Stage stage = new Stage();
+//
+//		stage.setTitle("Menu");
+//		stage.setScene(scene);
+//		stage.setResizable(false);
+//		stage.initModality(Modality.APPLICATION_MODAL);
+//		stage.show();
     }
     
 //    @FXML NAO SEI HEHEHE
@@ -135,33 +139,35 @@ public class MenuController {
 //    }
     
     @FXML
-    public void profile () throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../view/Funcionario_cadastro_screen.fxml"));
-
-    	Scene scene = new Scene(root);
-		
-		Stage stage = new Stage();
-
-		stage.setTitle("Menu");
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.show();
+    public void profile () throws Exception {
+    	sceneChange("sceneProfile");
+//		Parent root = FXMLLoader.load(getClass().getResource("../view/Funcionario_cadastro_screen.fxml"));
+//
+//    	Scene scene = new Scene(root);
+//		
+//		Stage stage = new Stage();
+//
+//		stage.setTitle("Menu");
+//		stage.setScene(scene);
+//		stage.setResizable(false);
+//		stage.initModality(Modality.APPLICATION_MODAL);
+//		stage.show();
     }
     
     @FXML
-    public void fidelidade () throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../view/Fidelidade_screen.fxml"));
-
-    	Scene scene = new Scene(root);
-		
-		Stage stage = new Stage();
-
-		stage.setTitle("Menu");
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.show();
+    public void fidelidade () throws Exception {
+    	sceneChange("sceneFidelidade");
+//		Parent root = FXMLLoader.load(getClass().getResource("../view/Fidelidade_screen.fxml"));
+//
+//    	Scene scene = new Scene(root);
+//		
+//		Stage stage = new Stage();
+//
+//		stage.setTitle("Menu");
+//		stage.setScene(scene);
+//		stage.setResizable(false);
+//		stage.initModality(Modality.APPLICATION_MODAL);
+//		stage.show();
     }
 
 }
