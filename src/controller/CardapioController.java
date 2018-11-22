@@ -188,22 +188,11 @@ tbCardapio.getSelectionModel().selectedItemProperty().addListener((observable, o
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Deu bom");
     		alert.setHeaderText("Deu bom, talquei?");
-<<<<<<< HEAD
-    		alert.setContentText("OK");
-    		try {
-				this.initialize();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    		alert.showAndWait();
-=======
     		alert.setContentText("sem problema mermao");
     		
     		//cardapio.setId(???);  // precisa do id no create
     		this.data.add(cardapio);
 			alert.showAndWait();
->>>>>>> c6484047458256ca83539fb4079f908f9aebd71d
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("tops");
@@ -219,8 +208,8 @@ tbCardapio.getSelectionModel().selectedItemProperty().addListener((observable, o
     	int index = tbCardapio.getSelectionModel().getSelectedIndex();
     	Cardapio cardapio = tbCardapio.getItems().get(index); 
         JSONObject jsonObject = new JSONObject();
-        System.out.println(cardapio.getId());
         jsonObject.put("id", cardapio.getId());
+        System.out.println(jsonObject.toString());
     	
     	String uri = "http://us-central1-iinv-bar.cloudfunctions.net/cardapio/remove";
     	URL url = new URL(uri);
@@ -232,9 +221,8 @@ tbCardapio.getSelectionModel().selectedItemProperty().addListener((observable, o
     	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
     	wr.write(jsonObject.toString());
     	wr.flush();
-    	
     	System.out.println(connection.getResponseMessage());
-    	
+
     	this.data.remove(cardapio);
 
 }

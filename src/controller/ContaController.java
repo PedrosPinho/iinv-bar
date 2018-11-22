@@ -3,12 +3,14 @@ package controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
 
@@ -98,8 +100,6 @@ public class ContaController {
 	    	
 
     	
-//    	this.tbCardapio = (TableView<Cardapio>) data;
-    	
     	FilteredList<Cardapio> filteredData = new FilteredList<>(data, c -> true);
     	
     	tfBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -187,6 +187,34 @@ public class ContaController {
 		stage.setResizable(false);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
+    }
+    
+    @FXML
+    public void memata() throws IOException {
+    	int index = tbCardapio2.getSelectionModel().getSelectedIndex();
+    	Cardapio cardapio = tbCardapio2.getItems().get(index); 
+        JSONObject jsonObject = new JSONObject();
+        
+        jsonObject.put("id",cardapio.getId());
+        jsonObject.put("nome",cardapio.getNome());
+        jsonObject.put("descricao", cardapio.getDescricao());
+        jsonObject.put("preco", cardapio.getPreco());
+        jsonObject.put("quantidade", 1);
+        int batata = Integer.parseInt(this.numero);
+        batata = batata -1;
+        System.out.println(batata);
+    	String uri = "http://us-central1-iinv-bar.cloudfunctions.net/mesa/add/"+Integer.toString(batata);
+    	URL url = new URL(uri);
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("POST");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	connection.setRequestProperty("Content-Type", "application/json");
+    	
+    	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+    	wr.write(jsonObject.toString());
+    	wr.flush();
+    	System.out.println(connection.getResponseCode());
     }
     
     @FXML
