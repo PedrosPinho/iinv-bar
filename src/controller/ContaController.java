@@ -32,12 +32,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ContaController {
-	private int numero;
+	private String numero;
 	private double total;
 	@SuppressWarnings("unchecked")
 	public void initialize() throws IOException, ParseException, org.json.simple.parser.ParseException {
 		ArrayList<Object> al = new ArrayList();
-		String banana = "https://us-central1-iinv-bar.cloudfunctions.net/mesa/itens/" + Integer.toString(numero);
+		System.out.println(numero);
+		String banana = "https://us-central1-iinv-bar.cloudfunctions.net/mesa/itens/" + this.numero;
 		URL url = new URL(banana);
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("GET");
@@ -195,7 +196,8 @@ public class ContaController {
     }
     
     public void getText(int num) {
-    	this.numero = num;
+    	System.out.println(Integer.toString(num));
+    	this.numero = Integer.toString(num);
     	String banana = this.lblHeader.getText() + Integer.toString(num);
     	this.lblHeader.setText(banana);
     }
