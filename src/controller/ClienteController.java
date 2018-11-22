@@ -27,6 +27,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,6 +41,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class ClienteController {
 	ObservableList<Cliente> data;
@@ -82,7 +84,6 @@ public class ClienteController {
     	this.tcFreq.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Frequencia"));
 
     	
-    	this.tbCliente.getItems().clear();
     	this.tbCliente.getItems().setAll(data);
 
     	FilteredList<Cliente> filteredData = new FilteredList<>(data, c -> true);
@@ -152,9 +153,8 @@ public class ClienteController {
     private Button btnRemover;
     
     @FXML
-    public void voltar() throws IOException {
-    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
-        stage.close();
+    public void voltar() throws Exception {
+    	Main.sceneChange("sceneMenu");
     }
     
     @FXML
@@ -185,6 +185,17 @@ public class ClienteController {
     		    loader.getController();
     		  controller.carregaCliente(cliente);
 
+    		  stage.setOnHidden(new EventHandler<WindowEvent>() {
+				
+				@Override
+				public void handle(WindowEvent event) {
+					
+				
+					recarregar(controller.getModo(),controller.getCliente(),controller.getNovoCliente());
+					// TODO Auto-generated method stub
+				
+				}
+			});
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
 	}
@@ -267,5 +278,15 @@ jsonObject.put("id", cliente.getCpf());
         }
         return null;
     }
+
+	public void recarregar(String modo, Cliente cliente, Cliente novoCliente) {
+		if(modo.equals("alter")) {
+			this.data.remove(cliente); 
+			}
+	 	this.data.add(novoCliente);
+	 	System.out.println("Recarregar");
+		// TODO Auto-generated method stub
+		
+	}
 
 }
