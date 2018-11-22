@@ -8,14 +8,14 @@ package classs;
 
 public class Desconto {
  
-    private int porcentagem;
+    private int desconto;
     private int frequencia;
     
      public int getPorcentagem() {
-    return this.porcentagem;
+    return this.desconto;
   }
     public void setPorcentagem (int porcentagem) {
-    this.porcentagem = porcentagem;
+    this.desconto = porcentagem;
     }
     public int getFrequencia() {
     return this.frequencia;

@@ -23,6 +23,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class CadastroFuncController {
+	public void initialize() {
+		this.modo = "create";
+	}
     @FXML
     private Button btnListar;
 
@@ -104,8 +107,9 @@ public class CadastroFuncController {
         jsonObject.put("funcao", this.tfFuncao.getText());
         jsonObject.put("inicio", this.tfInicio.getText());
         jsonObject.put("type", "funcionario");
+        System.out.println(this.modo);
         
-    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/"+modo;
+    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/" + this.modo;
     	URL url = new URL(uri);
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("POST");
