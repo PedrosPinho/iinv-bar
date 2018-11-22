@@ -1,7 +1,6 @@
 package controller;
 																																			
-import java.awt.List;																				
-import java.io.BufferedReader;											
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -16,6 +15,8 @@ import org.json.simple.parser.ParseException;
 import com.google.gson.Gson;
 
 import classs.Cardapio;
+import classs.Cliente;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -25,15 +26,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 public class CardapioController {
+	ObservableList<Cardapio> data;
+
+	
 
 	@SuppressWarnings("unchecked")
 	public void initialize () throws IOException, ParseException {
@@ -54,21 +56,20 @@ public class CardapioController {
     		al.add(a);
     	}
     	Gson gson = new Gson();
-    	ObservableList<Cardapio> data =
+    	this.data =
     	        FXCollections.observableArrayList();
     	al.forEach(a -> {
     		Cardapio c = gson.fromJson(a.toString(), Cardapio.class);
     		data.add(c);
     	});
+    	this.tcId.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Id"));
+    	this.tcId.setVisible(false); 
     	this.tcNome.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Nome"));
     	this.tcDescricao.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Descricao"));
     	this.tcPreco.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Preco"));
     	this.tbCardapio.getItems().setAll(data);
 	    	
-
-    	
-//    	this.tbCardapio = (TableView<Cardapio>) data;
-    	
+   	
     	FilteredList<Cardapio> filteredData = new FilteredList<>(data, c -> true);
     	
     	tfFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -93,7 +94,15 @@ public class CardapioController {
     	sortedData.comparatorProperty().bind(tbCardapio.comparatorProperty());
     	
     	tbCardapio.setItems(sortedData);
+tbCardapio.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+	int index = tbCardapio.getSelectionModel().getSelectedIndex();
+	Cardapio cardapio = tbCardapio.getItems().get(index); 
+	this.tfNome.setText(cardapio.getNome());
+	this.tfPreco.setText(Double.toString(cardapio.getPreco()));
+	this.tfDesc.setText(cardapio.getDescricao());
 
+
+});;
     	in.close();
 	}
 	
@@ -114,7 +123,9 @@ public class CardapioController {
 
     @FXML
     private TableView<Cardapio> tbCardapio;
-    
+    @FXML
+    private TableColumn<Cardapio,String> tcId;
+
     @FXML
     private TableColumn<Cardapio,String> tcNome;
     
@@ -144,7 +155,7 @@ public class CardapioController {
 
     @FXML
     private TextField tfNome;
-    
+  
     @FXML
     public void voltar() throws Exception {
     	Main.sceneChange("sceneMenu");
@@ -153,10 +164,14 @@ public class CardapioController {
     @FXML
     public void addItem () throws IOException {
     	JSONObject jsonObject = new JSONObject();
+    	Cardapio cardapio = new Cardapio();
+    	cardapio.setPreco(Double.parseDouble(this.tfPreco.getText()));
+    	cardapio.setNome(this.tfNome.getText());
+    	cardapio.setDescricao(this.tfDesc.getText());
         
-        jsonObject.put("nome", this.tfNome.getText());
-        jsonObject.put("descricao", this.tfDesc.getText());
-        jsonObject.put("preco", this.tfPreco.getText());
+        jsonObject.put("nome",cardapio.getNome());
+        jsonObject.put("descricao", cardapio.getDescricao());
+        jsonObject.put("preco", cardapio.getPreco());
         
     	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/cardapio/create";
     	URL url = new URL(uri);
@@ -174,13 +189,10 @@ public class CardapioController {
     		alert.setTitle("Deu bom");
     		alert.setHeaderText("Deu bom, talquei?");
     		alert.setContentText("sem problema mermao");
-    		try {
-				this.initialize();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    		alert.showAndWait();
+    		
+    		//cardapio.setId(???);  // precisa do id no create
+    		this.data.add(cardapio);
+			alert.showAndWait();
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("tops");
@@ -191,5 +203,28 @@ public class CardapioController {
     	}
 
     }
+    @FXML
+    public void removeItem () throws IOException {
+    	int index = tbCardapio.getSelectionModel().getSelectedIndex();
+    	Cardapio cardapio = tbCardapio.getItems().get(index); 
+        JSONObject jsonObject = new JSONObject();
+        System.out.println(cardapio.getId());
+        jsonObject.put("id", cardapio.getId());
+    	
+    	String uri = "http://us-central1-iinv-bar.cloudfunctions.net/cardapio/remove";
+    	URL url = new URL(uri);
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("DELETE");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	connection.setRequestProperty("Content-Type", "application/json");
+    	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+    	wr.write(jsonObject.toString());
+    	wr.flush();
+    	
+    	System.out.println(connection.getResponseMessage());
+    	
+    	this.data.remove(cardapio);
 
+}
 }

@@ -17,7 +17,7 @@
    <top>
       <AnchorPane prefHeight="100.0" prefWidth="740.0" style="-fx-background-color: #2b2d42;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnPerfil" layoutX="668.0" layoutY="14.0" mnemonicParsing="false" onAction="#profile" prefHeight="53.0" prefWidth="53.0" style="-fx-background-radius: 30;" text="Perfil" textOverrun="WORD_ELLIPSIS" />
+            <Button fx:id="btnPerfil" layoutX="668.0" layoutY="14.0" mnemonicParsing="false" onAction="#profile" prefHeight="53.0" prefWidth="53.0"  style="-fx-background-radius: 30;" text="Perfil" textOverrun="WORD_ELLIPSIS" />
             <Label layoutX="296.0" layoutY="16.0" text="Menu" textFill="#edf2f4">
                <font>
                   <Font name="Century Gothic Bold" size="55.0" />

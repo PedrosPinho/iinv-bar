@@ -18,6 +18,7 @@ public class Main extends Application {
     private static Scene sceneCardapio;
     private static Scene sceneProfile;
     private static Scene sceneFidelidade;
+    private static String cpf;
     
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -107,5 +108,13 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public static String getCpf() {
+		return cpf;
+	}
+
+	public static void setCpf(String cpf) {
+		Main.cpf = cpf;
 	}
 }

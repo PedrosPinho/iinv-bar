@@ -162,8 +162,6 @@ public class FuncionarioListaController {
     	wr.write(jsonObject.toString());
     	wr.flush();
     	
-    	System.out.println(connection.getResponseMessage());
-    	
     	this.data.remove(funcionario);
     	}
     

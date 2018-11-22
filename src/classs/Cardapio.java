@@ -27,10 +27,10 @@ public double getPreco() {
     this.nome = (String) id;
     }
     public String getDescricao() {
-    return this.descricao;
+    	return this.descricao;
     }
-    public void setDescricao (String Descricao) {
-    this.descricao = descricao;
+    public void setDescricao (String descricao) {
+    	this.descricao = descricao;
      }
 	public String getId() {
 		return id;

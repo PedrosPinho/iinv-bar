@@ -71,8 +71,9 @@ public class LoginController {
     	wr.flush();
 
     	if (connection.getResponseCode() == 200) {
+    		Main.setCpf(this.tfRegistro.getText());
     		sceneChange("sceneMenu");
-    		
+    	
 //			Parent root = FXMLLoader.load(getClass().getResource("../view/Menu_screen.fxml"));
 //	
 //	    	Scene scene = new Scene(root);
@@ -98,17 +99,28 @@ public class LoginController {
     
     @FXML
     public void cadastro () throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../view/Funcionario_cadastro_screen.fxml"));
+		FXMLLoader loader = new FXMLLoader(
+			    getClass().getResource(
+			      "../view/Funcionario_cadastro_screen.fxml"
+			    )
+			  );
 
-    	Scene scene = new Scene(root);
+
+    		  
+    	Scene scene = new Scene(loader.load());
 		
 		Stage stage = new Stage();
 
-		stage.setTitle("Cadastro");
-		stage.setScene(scene);
+		stage.setTitle("Menu");
+		stage.setScene(scene);			
 		stage.setResizable(false);
+		
+		CadastroFuncController controller = 
+    		    loader.getController();
+    		  controller.carregaFuncionario(new Funcionario());
+
 		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.show();
-    }
+		stage.show();    
+	}
 
 }

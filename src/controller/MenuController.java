@@ -1,7 +1,12 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+
 import static controller.Main.sceneChange;
+
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -10,7 +15,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+
+import com.google.gson.Gson;
 
 import classs.Funcionario;
 import javafx.animation.Animation;
@@ -140,18 +148,24 @@ public class MenuController {
     
     @FXML
     public void profile () throws Exception {
-    	sceneChange("sceneProfile");
-//		Parent root = FXMLLoader.load(getClass().getResource("../view/Funcionario_cadastro_screen.fxml"));
-//
-//    	Scene scene = new Scene(root);
-//		
-//		Stage stage = new Stage();
-//
-//		stage.setTitle("Menu");
-//		stage.setScene(scene);
-//		stage.setResizable(false);
-//		stage.initModality(Modality.APPLICATION_MODAL);
-//		stage.show();
+    	//sceneChange("sceneProfile");
+    	
+    	URL url = new URL("https://us-central1-iinv-bar.cloudfunctions.net/users/" +Main.getCpf());
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("GET");
+		connection.setRequestProperty("Content-type", "application/json, charset=utf-8");
+        
+    	BufferedReader in = new BufferedReader(
+		        new InputStreamReader(connection.getInputStream()));
+    	org.json.simple.parser.JSONParser parse = new org.json.simple.parser.JSONParser();
+    	JSONObject obj = (JSONObject) parse.parse(in.readLine());
+    	
+    	Gson gson = new Gson();
+    	Funcionario funcionario = gson.fromJson(obj.toString(), Funcionario.class);
+
+abrirTelaCadastro(funcionario);
+    	in.close();
+    	
     }
     
     @FXML
@@ -169,5 +183,29 @@ public class MenuController {
 //		stage.initModality(Modality.APPLICATION_MODAL);
 //		stage.show();
     }
+    
+    private void abrirTelaCadastro(Funcionario funcionario) throws IOException {
+		//Parent root = FXMLLoader.load(getClass().getResource("../view/Cliente_cadastro_screen.fxml"));
+		FXMLLoader loader = new FXMLLoader(
+			    getClass().getResource(
+			      "../view/Funcionario_cadastro_screen.fxml"
+			    )
+			  );
 
+
+    		  
+    	Scene scene = new Scene(loader.load());
+		
+		Stage stage = new Stage();
+
+		stage.setTitle("Menu");
+		stage.setScene(scene);			
+		stage.setResizable(false);
+		
+		CadastroFuncController controller = 
+    		    loader.getController();
+    		  controller.carregaFuncionario(funcionario);
+
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.show(); }
 }

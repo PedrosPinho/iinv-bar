@@ -119,7 +119,7 @@
                                           <Insets right="100.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <Button fx:id="btnRemover" mnemonicParsing="false" style="-fx-background-color: #2b2d42;" text="Remover" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                    <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#removeItem" style="-fx-background-color: #2b2d42;" text="Remover" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets left="100.0" />
                                        </GridPane.margin>
@@ -172,6 +172,7 @@
                               <Insets bottom="10.0" left="20.0" />
                            </GridPane.margin>
                            <columns>
+                               <TableColumn fx:id="tcId" prefWidth="75.0" text="Id" />           
                               <TableColumn fx:id="tcNome" prefWidth="75.0" text="Nome" />
                               <TableColumn fx:id="tcPreco" prefWidth="75.0" text="Preco" />
                               <TableColumn fx:id="tcDescricao" prefWidth="204.0" text="Descricao" />

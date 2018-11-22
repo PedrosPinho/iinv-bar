@@ -51,6 +51,9 @@ public class CadastroCliController {
 
     @FXML
     private TextField tfNome;
+	private Cliente novoCliente;
+
+	private Cliente cliente;
     
     @FXML
     public void voltar() throws IOException {
@@ -61,14 +64,22 @@ public class CadastroCliController {
     @FXML
     public void create () throws IOException {
     	JSONObject jsonObject = new JSONObject();
-    	
+    	Cliente cliente = new Cliente();
+    	cliente.setCpf(this.tfCpf.getText());
+    	cliente.setNome(this.tfNome.getText());
+    	cliente.setEmail(this.tfEmail.getText());
+    	cliente.setTelefone(this.tfTelefone.getText());
+
+
     	//if(this.modo == "create") {
     		
     	
         
-        jsonObject.put("nome", this.tfNome.getText());
-        jsonObject.put("cpf", this.tfCpf.getText());
-        jsonObject.put("email", this.tfEmail.getText());      
+        jsonObject.put("nome", cliente.getNome());
+        jsonObject.put("cpf", cliente.getCpf());
+        jsonObject.put("email", cliente.getEmail());
+        jsonObject.put("telefone", cliente.getTelefone());      
+
         jsonObject.put("type", "cliente");
        /* }
     	else {
@@ -84,6 +95,7 @@ public class CadastroCliController {
 
     	}*/
         
+        System.out.println(this.modo);
     	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/"+ this.modo;
     	URL url = new URL(uri);
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -105,6 +117,15 @@ public class CadastroCliController {
 			alert.setContentText("tops");
 			alert.showAndWait();
 			
+			try {
+                  this.novoCliente = cliente;
+                  voltar();
+			}
+			catch(Exception e){
+				
+			}
+			
+			
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Cadastro nao tops");
@@ -112,10 +133,11 @@ public class CadastroCliController {
 			alert.setContentText("Saco de coco, talquei?");
 			alert.showAndWait();
     	}
+    	
     }
 
 	public void carregaCliente(Cliente cliente) {
-		
+		this.cliente = cliente;
 		if(cliente.getCpf()== null) {
 			this.modo = "create";
 			tfCpf.setDisable(false);
@@ -127,8 +149,23 @@ public class CadastroCliController {
 		tfNome.setText(cliente.getNome());
 		
 		tfCpf.setDisable(true);
-		}
+	}
 		
+	}
+
+	public Cliente getNovoCliente() {
+		// TODO Auto-generated method stub
+		return this.novoCliente;
+	}
+
+	public String getModo() {
+		// TODO Auto-generated method stub
+		return this.modo;
+	}
+
+	public Cliente getCliente() {
+		// TODO Auto-generated method stub
+		return this.cliente;
 	}
 
 
