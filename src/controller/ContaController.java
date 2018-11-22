@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import classs.Cardapio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -67,34 +69,63 @@ public class ContaController {
 
     	this.tbCardapio.getItems().setAll(data);
     	
+    	ArrayList<Object> al1 = new ArrayList();
+		URL url1 = new URL("https://us-central1-iinv-bar.cloudfunctions.net/cardapio/");
+    	HttpURLConnection connection1 = (HttpURLConnection) url1.openConnection();
+    	connection1.setRequestMethod("GET");
+    	connection1.setDoOutput(true);
+    	connection1.setDoInput(true);
+    	
+    	BufferedReader in1 = new BufferedReader(
+		        new InputStreamReader(connection1.getInputStream()));
+    	org.json.simple.parser.JSONParser parse1 = new org.json.simple.parser.JSONParser();
+    	JSONArray obj1 = (JSONArray) parse1.parse(in1.readLine());
+    	
+    	
+    	for(Object a : obj1) {
+    		al1.add(a);
+    	}
+    	Gson gson1 = new Gson();
+    	ObservableList<Cardapio> data1 =
+    	        FXCollections.observableArrayList();
+    	al1.forEach(a -> {
+    		Cardapio c = gson1.fromJson(a.toString(), Cardapio.class);
+    		data.add(c);
+    	});
+    	this.tcNomeC.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Nome"));
+    	this.tcPrecoC.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Preco"));
+    	this.tbCardapio2.getItems().setAll(data1);
+	    	
 
-//    		ArrayList<Object> al1 = new ArrayList();
-//    		URL url1 = new URL("https://us-central1-iinv-bar.cloudfunctions.net/cardapio/");
-//        	HttpURLConnection connection1 = (HttpURLConnection) url1.openConnection();
-//        	connection1.setRequestMethod("GET");
-//        	connection1.setDoOutput(true);
-//        	connection1.setDoInput(true);
-//        	
-//        	BufferedReader in1 = new BufferedReader(
-//    		        new InputStreamReader(connection1.getInputStream()));
-//        	org.json.simple.parser.JSONParser parse1 = new org.json.simple.parser.JSONParser();
-//        	JSONArray obj1 = (JSONArray) parse1.parse(in1.readLine());
-//        	
-//        	
-//        	for(Object a : obj1) {
-//        		al1.add(a);
-//        	}
-//        	Gson gson1 = new Gson();
-//        	ObservableList<Cardapio> data1 =
-//        	        FXCollections.observableArrayList();
-//        	al1.forEach(a -> {
-//        		Cardapio c1 = gson1.fromJson(a.toString(), Cardapio.class);
-//        		data1.add(c1);
-//        	});
-//        	this.tcNomeC.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Nome"));
-//        	this.tcDescricaoC.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Descricao"));
-//        	this.tcPrecoC.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Preco"));
-//        	this.tbCardapioC.getItems().setAll(data1);
+    	
+//    	this.tbCardapio = (TableView<Cardapio>) data;
+    	
+    	FilteredList<Cardapio> filteredData = new FilteredList<>(data, c -> true);
+    	
+    	tfBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(c -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                
+                String lowerCaseFilter = newValue.toLowerCase();
+                
+                if (c.getNome().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches name
+                } else {
+                	return false; // Does not match.
+                }
+            });
+        });
+    	
+    	SortedList<Cardapio> sortedData = new SortedList<>(filteredData);
+    	
+    	sortedData.comparatorProperty().bind(tbCardapio2.comparatorProperty());
+    	
+    	tbCardapio2.setItems(sortedData);
+
+    	in.close();
 	}
 
     @FXML
@@ -110,7 +141,7 @@ public class ContaController {
     private Button btnFechar;
 
     @FXML
-    private TableView<Cardapio> tbCardapio, tbCardapioC;
+    private TableView<Cardapio> tbCardapio, tbCardapio2;
     
     @FXML
     private TableColumn<Cardapio,String> tcNome, tcNomeC;
@@ -119,7 +150,7 @@ public class ContaController {
     private TableColumn<Cardapio,String> tcPreco, tcPrecoC;
     
     @FXML
-    private TableColumn<Cardapio,String> tcDescricao, tcDescricaoC;
+    private TableColumn<Cardapio,String> tcDescricao;
     
     @FXML
     private TableColumn<Cardapio,String> tcQtd, tcQtdC;

@@ -107,9 +107,8 @@ public class CadastroFuncController {
         jsonObject.put("funcao", this.tfFuncao.getText());
         jsonObject.put("inicio", this.tfInicio.getText());
         jsonObject.put("type", "funcionario");
-        System.out.println(this.modo);
-        
-    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/" + this.modo;
+      
+    	String uri = "https://us-central1-iinv-bar.cloudfunctions.net/users/"+this.modo;
     	URL url = new URL(uri);
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("POST");
@@ -120,7 +119,7 @@ public class CadastroFuncController {
     	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
     	wr.write(jsonObject.toString());
     	wr.flush();
-    	
+    	System.out.println(connection.getResponseMessage());
     	if(connection.getResponseCode() == 200) {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Cadastro tops");

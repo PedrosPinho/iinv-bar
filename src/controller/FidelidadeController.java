@@ -102,9 +102,8 @@ public class FidelidadeController {
 	}
 	
     @FXML
-    public void voltar() throws IOException {
-    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
-        stage.close();
+    public void voltar() throws Exception {
+    	Main.sceneChange("sceneMenu");
     }
 
     @FXML
