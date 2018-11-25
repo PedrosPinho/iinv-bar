@@ -75,7 +75,7 @@ public class FidelidadeController {
 	
 	public void getFid() throws IOException, ParseException {
 		ArrayList<Object> al = new ArrayList();
-		URL url = new URL("http://localhost:5000/iinv-bar/us-central1/mesa/fidelidade");
+		URL url = new URL("https://us-central1-iinv-bar.cloudfunctions.net/mesa/fidelidade");
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("GET");
     	connection.setDoOutput(true);
@@ -147,7 +147,7 @@ public class FidelidadeController {
         jsonObject.put("frequencia", this.tfFrequencia.getText());
         jsonObject.put("desconto", this.tfDesconto.getText());
     	
-        String uri = "http://localhost:5000/iinv-bar/us-central1/mesa/fidelidade";
+        String uri = "https://us-central1-iinv-bar.cloudfunctions.net/mesa/fidelidade";
     	URL url = new URL(uri);
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     	connection.setRequestMethod("POST");

@@ -112,7 +112,6 @@
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="218.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.0" minWidth="10.0" prefWidth="175.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="196.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="145.0" />
                     </columnConstraints>
                     <rowConstraints>
@@ -127,38 +126,12 @@
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="lblDividir" text="DIVIDIR:" GridPane.columnIndex="1" GridPane.halignment="LEFT">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets left="20.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label fx:id="lblFinal" text="FINAL:" GridPane.columnIndex="2" GridPane.halignment="LEFT">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets left="20.0" />
-                           </GridPane.margin>
-                        </Label>
                         <TextField fx:id="tfTotal" prefHeight="45.0" prefWidth="68.0">
                            <GridPane.margin>
                               <Insets left="120.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="tfDividir" prefHeight="45.0" prefWidth="74.0" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="140.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="tfFinal" prefHeight="45.0" prefWidth="74.0" GridPane.columnIndex="2">
-                           <GridPane.margin>
-                              <Insets left="110.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Button fx:id="btnPagar" mnemonicParsing="false" prefHeight="67.0" prefWidth="104.0" style="-fx-background-color: #2b2d42;" text="PAGAR" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+                        <Button fx:id="btnPagar" mnemonicParsing="false" onAction="#pagou" prefHeight="67.0" prefWidth="206.0" style="-fx-background-color: #2b2d42;" text="PAGAR" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
