@@ -91,6 +91,7 @@ public class MesaController {
     
     @FXML
     public void clicou() throws IOException {
+    	Main.setNumMesa(selectMesa.getValue());
     	FXMLLoader Loader = new FXMLLoader();
     	Loader.setLocation(getClass().getResource("../view/Mesa_contas_screen.fxml"));
     	Loader.load();

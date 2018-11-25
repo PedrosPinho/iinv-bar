@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -36,40 +37,8 @@ import javafx.stage.Stage;
 public class ContaController {
 	private String numero;
 	private double total;
-	@SuppressWarnings("unchecked")
 	public void initialize() throws IOException, ParseException, org.json.simple.parser.ParseException {
-		ArrayList<Object> al = new ArrayList();
-		System.out.println(numero);
-		String banana = "https://us-central1-iinv-bar.cloudfunctions.net/mesa/itens/" + this.numero;
-		URL url = new URL(banana);
-    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-    	connection.setRequestMethod("GET");
-    	connection.setDoOutput(true);
-    	connection.setDoInput(true);
-    	
-    	BufferedReader in = new BufferedReader(
-		        new InputStreamReader(connection.getInputStream()));
-    	org.json.simple.parser.JSONParser parse = new org.json.simple.parser.JSONParser();
-    	JSONArray obj = (JSONArray) parse.parse(in.readLine());
-    	
-    	
-    	for(Object a : obj) {
-    		al.add(a);
-    	}
-    	Gson gson = new Gson();
-    	ObservableList<Cardapio> data =
-    	        FXCollections.observableArrayList();
-    	al.forEach(a -> {
-    		Cardapio c = gson.fromJson(a.toString(), Cardapio.class);
-    		this.total += (c.getPreco() * c.getQuantidade());
-    		data.add(c);
-    	});
-    	this.tcNome.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("id"));
-    	this.tcDescricao.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("nome"));
-    	this.tcPreco.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Preco"));
-    	this.tcQtd.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Quantidade"));
-
-    	this.tbCardapio.getItems().setAll(data);
+		this.refresh();
     	
     	ArrayList<Object> al1 = new ArrayList();
 		URL url1 = new URL("https://us-central1-iinv-bar.cloudfunctions.net/cardapio/");
@@ -92,7 +61,7 @@ public class ContaController {
     	        FXCollections.observableArrayList();
     	al1.forEach(a -> {
     		Cardapio c = gson1.fromJson(a.toString(), Cardapio.class);
-    		data.add(c);
+    		data1.add(c);
     	});
     	this.tcNomeC.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Nome"));
     	this.tcPrecoC.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("Preco"));
@@ -100,7 +69,7 @@ public class ContaController {
 	    	
 
     	
-    	FilteredList<Cardapio> filteredData = new FilteredList<>(data, c -> true);
+    	FilteredList<Cardapio> filteredData = new FilteredList<>(data1, c -> true);
     	
     	tfBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(c -> {
@@ -124,15 +93,10 @@ public class ContaController {
     	sortedData.comparatorProperty().bind(tbCardapio2.comparatorProperty());
     	
     	tbCardapio2.setItems(sortedData);
-
-    	in.close();
 	}
 
     @FXML
-    private Button btnAdicionar;
-
-    @FXML
-    private TextField tfItens;
+    private Button btnAdicionar, btnAdicionar1;
 
     @FXML
     private Label lblBuscar;
@@ -165,9 +129,6 @@ public class ContaController {
     private TextField tfBuscar;
 
     @FXML
-    private TextField tfQtd;
-
-    @FXML
     private Label lblItens;
     
     @FXML
@@ -189,8 +150,52 @@ public class ContaController {
 		stage.show();
     }
     
+    public int mano() {
+    	int batata = Integer.parseInt(this.numero);
+        return batata = batata -1;
+    }
+    
+    public void refresh() throws IOException, org.json.simple.parser.ParseException {
+    	this.total = 0;
+    	ArrayList<Object> al = new ArrayList();
+		System.out.println(Main.getNumMesa());
+		int batata = Integer.parseInt(Main.getNumMesa());
+        batata = batata -1;
+		String banana = "https://us-central1-iinv-bar.cloudfunctions.net/mesa/itens/"+batata;
+		URL url = new URL(banana);
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("GET");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	
+    	BufferedReader in = new BufferedReader(
+		        new InputStreamReader(connection.getInputStream()));
+    	org.json.simple.parser.JSONParser parse = new org.json.simple.parser.JSONParser();
+    	JSONArray obj = (JSONArray) parse.parse(in.readLine());
+    	
+    	
+    	for(Object a : obj) {
+    		al.add(a);
+    	}
+    	Gson gson = new Gson();
+    	ObservableList<Cardapio> data =
+    	        FXCollections.observableArrayList();
+    	al.forEach(a -> {
+    		Cardapio c = gson.fromJson(a.toString(), Cardapio.class);
+    		this.total += (c.getPreco() * c.getQuantidade());
+    		data.add(c);
+    	});
+    	this.tcNome.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("id"));
+    	this.tcDescricao.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("nome"));
+    	this.tcPreco.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("preco"));
+    	this.tcQtd.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("quantidade"));
+
+    	this.tbCardapio.getItems().setAll(data);
+    	in.close();
+    }
+    
     @FXML
-    public void memata() throws IOException {
+    public void memata() throws IOException, org.json.simple.parser.ParseException {
     	int index = tbCardapio2.getSelectionModel().getSelectedIndex();
     	Cardapio cardapio = tbCardapio2.getItems().get(index); 
         JSONObject jsonObject = new JSONObject();
@@ -202,7 +207,6 @@ public class ContaController {
         jsonObject.put("quantidade", 1);
         int batata = Integer.parseInt(this.numero);
         batata = batata -1;
-        System.out.println(batata);
     	String uri = "http://us-central1-iinv-bar.cloudfunctions.net/mesa/add/"+Integer.toString(batata);
     	URL url = new URL(uri);
     	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -215,6 +219,31 @@ public class ContaController {
     	wr.write(jsonObject.toString());
     	wr.flush();
     	System.out.println(connection.getResponseCode());
+    	
+    	this.refresh();
+    }
+    
+    @FXML
+    public void rmv() throws IOException, org.json.simple.parser.ParseException {
+    	int index = tbCardapio2.getSelectionModel().getSelectedIndex();
+    	Cardapio cardapio = tbCardapio2.getItems().get(index); 
+        
+        int batata = Integer.parseInt(this.numero);
+        batata = batata -1;
+    	String uri = "http://us-central1-iinv-bar.cloudfunctions.net/mesa/remove/"+Integer.toString(batata)+"/"+cardapio.getId();
+    	URL url = new URL(uri);
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("DELETE");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	connection.setRequestProperty("Content-Type", "application/json");
+    	
+    	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+    	wr.write("");
+    	wr.flush();
+    	System.out.println(connection.getResponseCode());
+    	
+    	this.refresh();
     }
     
     @FXML
@@ -224,7 +253,6 @@ public class ContaController {
     }
     
     public void getText(int num) {
-    	System.out.println(Integer.toString(num));
     	this.numero = Integer.toString(num);
     	String banana = this.lblHeader.getText() + Integer.toString(num);
     	this.lblHeader.setText(banana);

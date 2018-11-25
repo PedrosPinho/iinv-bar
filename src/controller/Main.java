@@ -19,6 +19,7 @@ public class Main extends Application {
     private static Scene sceneProfile;
     private static Scene sceneFidelidade;
     private static String cpf;
+    private static String numMesa;
     
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -116,5 +117,13 @@ public class Main extends Application {
 
 	public static void setCpf(String cpf) {
 		Main.cpf = cpf;
+	}
+	
+	public static String getNumMesa() {
+		return numMesa;
+	}
+
+	public static void setNumMesa(String cpf) {
+		Main.numMesa = cpf;
 	}
 }
