@@ -190,7 +190,7 @@ public class ContaController {
     	this.tcPreco.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("preco"));
     	this.tcQtd.setCellValueFactory(new PropertyValueFactory<Cardapio, String>("quantidade"));
 
-    	this.tbCardapio.getItems().setAll(data);
+    	this.tbCardapio.getItems().setAll(data); 
     	in.close();
     }
     
