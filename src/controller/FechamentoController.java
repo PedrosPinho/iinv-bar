@@ -1,7 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import javafx.beans.value.ChangeListener;
@@ -91,6 +96,29 @@ public class FechamentoController {
     public void voltar() throws IOException {
     	Stage stage = (Stage) btnVoltar.getScene().getWindow();
         stage.close();
+    }
+    
+    @FXML 
+    public void cadastrado() throws IOException {
+    	JSONObject jsonObject = new JSONObject();
+    	int batata = Integer.parseInt(Main.getNumMesa());
+        batata = batata -1;
+        jsonObject.put("cpf",this.tfCpf.getText());
+    	String uri = "http://us-central1-iinv-bar.cloudfunctions.net/mesa/sell/"+batata;
+    	URL url = new URL(uri);
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("POST");
+    	connection.setDoOutput(true);
+    	connection.setDoInput(true);
+    	connection.setRequestProperty("Content-Type", "application/json");
+    	
+    	OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+    	wr.write(jsonObject.toString());
+    	wr.flush();
+    	System.out.println(connection.getInputStream());
+    	this.btnCadastrado.setDisable(true);
+    	this.tfCpf.setDisable(true);
+    	this.btnNCadastrado.setDisable(true);
     }
 
     
