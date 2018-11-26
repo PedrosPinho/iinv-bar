@@ -116,12 +116,7 @@
                                     </Label>
                                     <Button fx:id="btnAdicionar" mnemonicParsing="false" onAction="#addItem" style="-fx-background-color: #2b2d42;" text="Adicionar" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                        <GridPane.margin>
-                                          <Insets right="100.0" />
-                                       </GridPane.margin>
-                                    </Button>
-                                    <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#removeItem" style="-fx-background-color: #2b2d42;" text="Remover" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-                                       <GridPane.margin>
-                                          <Insets left="100.0" />
+                                          <Insets />
                                        </GridPane.margin>
                                     </Button>
                                     <TextField fx:id="tfNome" GridPane.rowIndex="2">
@@ -151,7 +146,8 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="215.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <TextField fx:id="tfFiltrar" prefHeight="22.0" prefWidth="315.0">
@@ -178,6 +174,11 @@
                               <TableColumn fx:id="tcDescricao" prefWidth="204.0" text="Descricao" />
                            </columns>
                         </TableView>
+                        <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#removeItem" style="-fx-background-color: #2b2d42;" text="Remover" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Button>
                      </children>
                   </GridPane>
                </children>
