@@ -90,7 +90,7 @@ public class LoginController {
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Erro no login");
-    		alert.setHeaderText("Erro tente novamente");
+    		alert.setHeaderText("Erro, tente novamente");
     		alert.setContentText("Algo deu errado =(");
 
     		alert.showAndWait();

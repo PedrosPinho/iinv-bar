@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 
 import classs.Cliente;
 import classs.Desconto;
+import classs.Funcionario;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -123,10 +124,9 @@ public class FechamentoController {
     	wr.write(jsonObject.toString());
     	wr.flush();
     	if (connection.getResponseCode() == 200) {
-    		//AQUI MATEUSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
     		Alert alert = new Alert(AlertType.INFORMATION);
-    		alert.setTitle("OK");
-    		alert.setHeaderText("OK");
+    		alert.setTitle("Sucesso");
+    		alert.setHeaderText("Venda computada!");
     		alert.setContentText("OK =)");
     		
     		alert.showAndWait();
@@ -151,7 +151,7 @@ public class FechamentoController {
 //    		stage.show();
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
-    		alert.setTitle("Erro no login");
+    		alert.setTitle("Erro!");
     		alert.setHeaderText("Erro tente novamente");
     		alert.setContentText("Algo deu errado =(");
 
@@ -185,8 +185,8 @@ public class FechamentoController {
     	System.out.println(connection.getResponseCode());
     	if (connection.getResponseCode() == 200) {
     		Alert alert = new Alert(AlertType.INFORMATION);
-    		alert.setTitle("OK");
-    		alert.setHeaderText("OK");
+    		alert.setTitle("Sucesso");
+    		alert.setHeaderText("Desconto concedido");
     		alert.setContentText("OK =)");
     		
     		ArrayList<Object> al = new ArrayList();
@@ -227,33 +227,25 @@ public class FechamentoController {
     }
     
     public void setDisc(int f, int d) throws IOException, ParseException {
-    	ArrayList<Object> al = new ArrayList();
-    	System.out.println(f+d+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		URL url1 = new URL("https://us-central1-iinv-bar.cloudfunctions.net/user/"+this.tfCpf.getText());
-    	HttpURLConnection connection1 = (HttpURLConnection) url1.openConnection();
-    	connection1.setRequestMethod("GET");
-    	connection1.setDoOutput(true);
-    	connection1.setDoInput(true);
-    	System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-
+    	
+		URL url = new URL("https://us-central1-iinv-bar.cloudfunctions.net/users/" +this.tfCpf.getText());
+    	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	connection.setRequestMethod("GET");
+		connection.setRequestProperty("Content-type", "application/json, charset=utf-8");
+        
     	BufferedReader in = new BufferedReader(
-		        new InputStreamReader(connection1.getInputStream()));
+		        new InputStreamReader(connection.getInputStream()));
     	org.json.simple.parser.JSONParser parse = new org.json.simple.parser.JSONParser();
-    	JSONArray obj = (JSONArray) parse.parse(in.readLine());
+    	JSONObject obj = (JSONObject) parse.parse(in.readLine());
     	
-    	
-    	for(Object a : obj) {
-    		al.add(a);
-    	}
     	Gson gson = new Gson();
-    	ObservableList<Cliente> data =
-    	        FXCollections.observableArrayList();
-    	al.forEach(a -> {
-    		Cliente c = gson.fromJson(a.toString(), Cliente.class);
-    		data.add(c);
-    	});
 
-    	if (data.get(0).getFrequencia() >= f) {
+    	Cliente cliente = gson.fromJson(obj.toString(), Cliente.class);
+
+    	
+    	System.out.println(cliente.getFrequencia());
+
+    	if (cliente.getFrequencia() >= f) {
     		double odeioJava = Double.parseDouble(this.tfTotal.getText());
     		odeioJava = odeioJava - (odeioJava*d/100);
     		this.tfTotal.setText(Double.toString(odeioJava));

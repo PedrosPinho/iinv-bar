@@ -122,16 +122,16 @@ public class CadastroFuncController {
     	System.out.println(connection.getResponseMessage());
     	if(connection.getResponseCode() == 200) {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Cadastro tops");
-			alert.setHeaderText("tops");
+			alert.setTitle("Sucesso");
+			alert.setHeaderText("Cadastro efetuado");
 			alert.setContentText("tops");
 	
 			alert.showAndWait();
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Cadastro nao tops");
-			alert.setHeaderText("nao tops");
-			alert.setContentText("Erro");
+			alert.setTitle("Erro!");
+			alert.setHeaderText("Erro no cadstro");
+			alert.setContentText("Tente novamente");
 			alert.showAndWait();
     	}
     }

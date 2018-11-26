@@ -112,9 +112,9 @@ public class CadastroCliController {
     	
     	if(connection.getResponseCode() == 200) {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Cadastro tops");
-			alert.setHeaderText("tops");
-			alert.setContentText("tops");
+	    	alert.setTitle("Sucesso");
+    		alert.setHeaderText("Cadastro efetuado!");
+    		alert.setContentText("OK =)");
 			alert.showAndWait();
 			
 			try {
@@ -128,9 +128,9 @@ public class CadastroCliController {
 			
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Cadastro nao tops");
-			alert.setHeaderText("nao tops");
-			alert.setContentText("Erro");
+			alert.setTitle("Erro!");
+			alert.setHeaderText("Erro no cadastro");
+			alert.setContentText("Tente novamente");
 			alert.showAndWait();
     	}
     	

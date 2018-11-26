@@ -161,16 +161,16 @@ public class FidelidadeController {
     	
     	if(connection.getResponseCode() == 200) {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Cadastro tops");
-			alert.setHeaderText("tops");
-			alert.setContentText("tops");
+			alert.setTitle("Sucesso");
+			alert.setHeaderText("Desconto criado");
+			alert.setContentText("OK =)");
 	
 			alert.showAndWait();
 			this.getFid();
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Cadastro nao tops");
-			alert.setHeaderText("nao tops");
+			alert.setTitle("Erro");
+			alert.setHeaderText("Tente novamente");
 			alert.setContentText("Erro");
 			alert.showAndWait();
     	}

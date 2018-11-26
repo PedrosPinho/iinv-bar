@@ -186,18 +186,18 @@ tbCardapio.getSelectionModel().selectedItemProperty().addListener((observable, o
     	wr.flush();
     	if (connection.getResponseCode() == 200) {
     		Alert alert = new Alert(AlertType.INFORMATION);
-    		alert.setTitle("Deu bom");
-    		alert.setHeaderText("Deu bom, talquei?");
-    		alert.setContentText("sem problema mermao");
+    		alert.setTitle("Sucesso");
+    		alert.setHeaderText("Item adicionado");
+    		alert.setContentText("OK");
     		
     		//cardapio.setId(???);  // precisa do id no create
     		this.data.add(cardapio);
 			alert.showAndWait();
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
-    		alert.setTitle("tops");
-    		alert.setHeaderText("Deu ruim, talquei?");
-    		alert.setContentText("mt problema mermao");
+    		alert.setTitle("Erro!");
+    		alert.setHeaderText("Problema ao criar item");
+    		alert.setContentText("Tente novamente");
 
     		alert.showAndWait();
     	}
