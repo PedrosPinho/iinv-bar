@@ -82,7 +82,6 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -110,14 +109,6 @@
                      </font>
                      <GridPane.margin>
                         <Insets bottom="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </Button>
-                  <Button fx:id="btnRelatorio" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2b2d42;" text="Relatório" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" right="10.0" top="20.0" />
                      </GridPane.margin>
                   </Button>
                </children>
