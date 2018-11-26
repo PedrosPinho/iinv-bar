@@ -1,5 +1,7 @@
 package controller;
 
+import static controller.Main.sceneChange;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -90,7 +92,7 @@ public class MesaController {
     private ImageView btnVoltar;
     
     @FXML
-    public void clicou() throws IOException {
+    public void clicou() throws Exception {
     	Main.setNumMesa(selectMesa.getValue());
     	FXMLLoader Loader = new FXMLLoader();
     	Loader.setLocation(getClass().getResource("../view/Mesa_contas_screen.fxml"));
@@ -99,6 +101,11 @@ public class MesaController {
     	conta.getText(Integer.parseInt(selectMesa.getValue()));
     	Parent root = Loader.getRoot();
     	Scene scene = new Scene(root);
+    	
+//    	Stage s = (Stage) btnMesa.getScene().getWindow();
+//	    s.close();
+    	
+    	sceneChange("sceneMenu");
 		
 		Stage stage = new Stage();
 		

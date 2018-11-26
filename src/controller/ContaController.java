@@ -16,6 +16,7 @@ import org.json.simple.JSONObject;
 import com.google.gson.Gson;
 
 import classs.Cardapio;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -140,6 +141,9 @@ public class ContaController {
     	conta.fill(Double.toString(this.total));
     	Parent root = Loader.getRoot();
     	Scene scene = new Scene(root);
+    	
+    	Stage s = (Stage) btnFechar.getScene().getWindow();
+	    s.close();
 		
 		Stage stage = new Stage();
 		

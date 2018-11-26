@@ -1,5 +1,7 @@
 package controller;
 
+import static controller.Main.sceneChange;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,17 +18,22 @@ import com.google.gson.Gson;
 
 import classs.Cliente;
 import classs.Desconto;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -99,7 +106,7 @@ public class FechamentoController {
     }
     
     @FXML
-    public void pagou() throws IOException {
+    public void pagou() throws Exception {
     	JSONObject jsonObject = new JSONObject();
     	int batata = Integer.parseInt(Main.getNumMesa());
         batata = batata -1;
@@ -121,8 +128,27 @@ public class FechamentoController {
     		alert.setTitle("OK");
     		alert.setHeaderText("OK");
     		alert.setContentText("OK =)");
-
+    		
     		alert.showAndWait();
+    		Stage s = (Stage) btnPagar.getScene().getWindow();
+    	    s.close();
+    	    
+//    	    sceneChange("sceneMenu");
+    	    
+//    	    FXMLLoader Loader = new FXMLLoader();
+//        	Loader.setLocation(getClass().getResource("../view/Menu_screen.fxml"));
+//        	Loader.load();
+//        	MenuController menu = Loader.getController();
+//        	Parent root = Loader.getRoot();
+//        	Scene scene = new Scene(root);
+//        	
+//        	Stage stage = new Stage();
+//    		
+//    		stage.setTitle("Conta");
+//    		stage.setScene(scene);
+//    		stage.setResizable(false);
+//    		stage.initModality(Modality.APPLICATION_MODAL);
+//    		stage.show();
     	} else {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Erro no login");
